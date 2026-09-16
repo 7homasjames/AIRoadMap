@@ -33,6 +33,28 @@ Updated weekly, every Sunday. Newest entry on top.
 
 ---
 
+## Day 2 — 2026-09-16/17
+
+**Phase:** 0 — Setup & Baseline
+
+### Topics touched
+- Environment verification: venv, pandas, Jupyter, PyTorch (CUDA)
+
+### Engineering
+- Created project-local `.venv`, added `.gitignore` and `requirements.txt`
+- Installed pandas 3.0.5, Jupyter (ipykernel/ipywidgets), and PyTorch 2.11.0+cu128 (CUDA 12.8 build, required for RTX 5060 Blackwell GPU support)
+- Verified `torch.cuda.is_available()` → `True`, device: NVIDIA GeForce RTX 5060 Laptop GPU
+- Ran end-to-end GPU training loop (`notes/day2-gpu-check.py`) — 200 SGD steps on a linear model, converged (loss 0.01), 0.155s on GPU
+- Pinned VS Code Python interpreter to `.venv` via `.vscode/settings.json`
+
+### Evidence
+- `notes/day2-gpu-check.py`, updated `notes/day1-setup-checklist.md` with completed Day 2 checklist
+
+### Next starting point
+- Phase 0 exit criteria fully met. Pick Phase 1 Day 1 topic (see `notes/full-plan.md` — Python/C++/DSA/Git/Linux track or a math block) and begin.
+
+---
+
 ## Week of {{YYYY-MM-DD}}
 
 **Phase:** {{phase name}}

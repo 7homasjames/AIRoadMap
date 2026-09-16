@@ -25,13 +25,16 @@ Probed directly on-machine rather than self-reported.
 
 **Decision (2026-09-15):** WSL Ubuntu install deferred until the Linux-fundamentals topic comes up in Phase 1 — Git Bash/MSYS2 is sufficient for now.
 
-## Day 2 action items (environment verification)
-- [ ] Create a project-local virtualenv (stop using global site-packages — this machine already has other projects' packages installed globally, e.g. FastAPI/agent-framework deps, which risks version collisions)
-- [ ] Install `pandas`, `jupyter` into the venv
-- [ ] Install PyTorch with CUDA 12.x build (matches RTX 5060 + driver 595.95)
-- [ ] Verify: `torch.cuda.is_available()` returns `True`
-- [ ] Run a toy training loop end-to-end to confirm GPU training works
-- [ ] Set up VS Code Python/Jupyter extensions pointed at the venv
+## Day 2 action items (environment verification) — completed 2026-09-16/17
+
+- [x] Create a project-local virtualenv (`.venv/`, gitignored)
+- [x] Install `pandas` (3.0.5), `jupyter` into the venv
+- [x] Install PyTorch with CUDA 12.8 build (`torch 2.11.0+cu128`, matches RTX 5060 + driver 595.95)
+- [x] Verify: `torch.cuda.is_available()` returns `True` — confirmed, device: NVIDIA GeForce RTX 5060 Laptop GPU
+- [x] Run a toy training loop end-to-end to confirm GPU training works — see `notes/day2-gpu-check.py` (200 SGD steps, converged, 0.155s on GPU)
+- [x] VS Code interpreter pinned to `.venv` via `.vscode/settings.json`
+
+Environment is fully verified and ready for Phase 1.
 
 ## Repo
 - [x] `ai-engineering-roadmap` folder structure created
@@ -69,7 +72,7 @@ Recorded in `PROGRESS.md` under the Baseline week entry.
 
 ## Exit criteria for Phase 0
 
-- [ ] Environment fully working (can run a PyTorch training loop end-to-end on a toy example)
-- [ ] Repo pushed to GitHub
-- [ ] Baseline ratings recorded
+- [x] Environment fully working (can run a PyTorch training loop end-to-end on a toy example)
+- [x] Repo pushed to GitHub
+- [x] Baseline ratings recorded
 - [ ] Phase 1 Day 1 topic picked (see `notes/full-plan.md`)
