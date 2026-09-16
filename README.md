@@ -24,6 +24,13 @@ For each important concept:
 
 Not "finish 379 topics." Target: become someone who understands the foundations of computing and AI deeply enough to build, evaluate, debug, and explain serious AI systems.
 
+## Daily structure
+
+Two parallel tracks, every day:
+
+- **2 hours — main roadmap track.** Follows the phases below, sequenced through `notes/full-plan.md`.
+- **1 hour — DSA track.** A fixed, problem-by-problem interview-prep schedule running independently Sep 16, 2026 → Mar 31, 2027, regardless of which phase the main track is in. See [`dsa/README.md`](dsa/README.md) and [`dsa/SCHEDULE.md`](dsa/SCHEDULE.md).
+
 ## Progress Levels
 
 - [ ] Level 0 — Unfamiliar
@@ -68,7 +75,7 @@ Full phase-by-phase topic breakdown lives in [`notes/full-plan.md`](notes/full-p
 ```text
 ai-engineering-roadmap/
 │
-├── 01-programming/        (python, cpp, dsa, linux, git)
+├── 01-programming/        (python, cpp, linux, git — DSA moved to top-level dsa/, see below)
 ├── 02-computer-science/   (operating-systems, networking, computer-architecture, distributed-systems)
 ├── 03-mathematics/        (linear-algebra, probability-statistics, calculus, optimization)
 ├── 04-machine-learning/
@@ -83,6 +90,7 @@ ai-engineering-roadmap/
 ├── 13-mlops/
 ├── 14-system-design/
 │
+├── dsa/          — the 1-hour daily LeetCode track, see dsa/README.md (independent schedule, own folder because it runs on its own cadence across the whole roadmap, not tied to a phase)
 ├── projects/     — the project ladder, see projects/README.md
 ├── notes/        — concept notes, full plan, setup checklists
 └── experiments/  — small throwaway experiments that don't belong in a project or topic folder

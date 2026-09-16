@@ -1,0 +1,58 @@
+# DSA Track — Daily 1-Hour LeetCode Plan
+
+**Duration:** Sep 16, 2026 → Mar 31, 2027 (28 weeks)
+**Cadence:** 1 hour daily, runs in parallel to the main 2-hour roadmap track — independent of which phase the main track is in.
+
+This is a problem-by-problem plan. No decision fatigue: open [`SCHEDULE.md`](SCHEDULE.md), find today, solve it.
+
+## How to spend the hour
+
+| Time | What |
+|---|---|
+| 0:00–0:05 | Read the problem twice. Write constraints + edge cases before touching code. |
+| 0:05–0:15 | Think through approach on paper/comments only. No coding yet. If stuck after 10 min, that's fine — proceed. |
+| 0:15–0:45 | Code it. |
+| 0:45–0:55 | Test with edge cases (empty input, single element, duplicates, negatives). Fix bugs. |
+| 0:55–1:00 | If unsolved or inefficient: peek at the optimal approach, note the trick in `TRACKER.md`, re-implement it from scratch tomorrow morning (5 min) before starting the new problem. Mark this problem "revisit in 4 days." |
+
+**Weekdays** = 1 new problem.
+**Saturday** = 1 problem done fully timed (45 min hard stop, like a real interview) + 15 min self-review.
+**Sunday** = re-solve one problem from earlier in the week from scratch, no notes — this is what actually builds recall.
+
+## Rules that make this work
+
+1. **Never skip straight to the solution before your own 30 min attempt** — even a wrong attempt builds the pattern-recognition that's the actual goal.
+2. **The Sunday redo is non-negotiable.** It's the difference between "I've seen 200 problems" and "I can solve 200 problems." Don't skip it even when tempted to do something new.
+3. **If a day's problem takes way over an hour, stop at 1 hour**, mark it "incomplete — revisit" in the tracker, and move to the next day's problem as scheduled. Don't let one hard problem cascade into missing three days.
+4. **Track everything** (problem, pattern, solved unaided Y/N, revisit date) in [`TRACKER.md`](TRACKER.md) — this plan only works if you also know which parts of it aren't sticking.
+
+## Structure
+
+- [`SCHEDULE.md`](SCHEDULE.md) — the full day-by-day problem list, all 28 weeks.
+- [`TRACKER.md`](TRACKER.md) — log of every attempt: solved unaided, time taken, peeked at solution, revisit date, the trick/pattern.
+- One folder per pattern block (`01-arrays-hashing/`, `02-two-pointers-sliding-window/`, …) — solutions go here, one file per problem, named after the problem (e.g. `two-sum.py`).
+
+## Solution file convention
+
+```python
+"""
+LeetCode: <problem name> (<difficulty>)
+Pattern: <pattern>
+Date: <YYYY-MM-DD>
+Solved unaided: Yes/No
+Time complexity: O(...)
+Space complexity: O(...)
+"""
+
+# constraints / edge cases noted here before coding
+
+def solution(...):
+    ...
+
+
+if __name__ == "__main__":
+    # test cases including edge cases
+    ...
+```
+
+Keep the docstring — it's what makes the Sunday redo and later review actually useful instead of just a pile of code.

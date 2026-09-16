@@ -88,6 +88,14 @@ Updated weekly, every Sunday. Newest entry on top.
 
 ---
 
+## DSA Track added — 2026-09-16
+
+Set up `dsa/` as an independent daily track (1 hour/day, Sep 16 2026 – Mar 31 2027), running in parallel to the main 2-hour roadmap track regardless of phase. Full plan in `dsa/SCHEDULE.md`, hour-by-hour structure and rules in `dsa/README.md`, per-attempt logging in `dsa/TRACKER.md`. Removed the now-redundant `01-programming/dsa/` folder — DSA lives at the top level since it isn't phase-bound.
+
+From here on, daily log entries should note progress on **both** tracks where applicable.
+
+---
+
 ## Week of {{YYYY-MM-DD}}
 
 **Phase:** {{phase name}}
