@@ -55,6 +55,39 @@ Updated weekly, every Sunday. Newest entry on top.
 
 ---
 
+## Phase 1, Day 1 — 2026-09-21
+
+**Phase:** 1 — Programming + CS + Math
+
+### Topics touched
+- Linear algebra: vectors, matrices, matrix multiplication (dot product, matrix-vector, matrix-matrix) — mastery: 2 (working knowledge), targeting 3 after self-explanation + more practice
+
+### Why this topic first
+- Baseline showed math (Level 1, rusty) as the biggest gap relative to Python/RAG/agents/backend (Level 2-3). Linear algebra directly underlies ML → DL → transformers, so it's the highest-leverage place to start Phase 1 rather than reviewing already-strong Python.
+
+### Understanding
+- Matrix multiplication is a compact notation for repeated weighted sums (linear combinations) — not a separate concept from dot products, but dot-products-of-rows-and-columns applied systematically.
+- Non-commutativity (AB ≠ BA) verified concretely, not just stated.
+- Connected directly to neural networks: a dense layer is literally `y = Wx + b`; why nonlinear activations are required (stacked linear layers collapse to one linear layer: `W2(W1x) = (W2W1)x`).
+
+### Engineering
+- Implemented `dot`, `matvec`, `matmul` from scratch in pure Python (no NumPy), verified all three against `numpy` with `np.allclose`.
+- Demonstrated non-commutativity with a concrete PQ vs QP example.
+- Implemented a neural-net-shaped `Wx + b` layer computation and verified against NumPy.
+
+### Evidence
+- `03-mathematics/linear-algebra/01-vectors-matrices.md` (concept note, first-principles format)
+- `03-mathematics/linear-algebra/vectors_matrices.py` (implementation, all checks pass)
+
+### Integration
+- This is the direct prerequisite for Project 2 (linear regression via matrix ops), planned for later this week.
+
+### Next starting point
+- Fill in section 10 ("My explanation") of the concept note in own words.
+- Continue linear algebra block: linear transformations, eigenvalues/eigenvectors, SVD — or interleave with a C++/DSA diagnostic given baseline uncertainty there.
+
+---
+
 ## Week of {{YYYY-MM-DD}}
 
 **Phase:** {{phase name}}
