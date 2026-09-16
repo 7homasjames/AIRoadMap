@@ -1,37 +1,49 @@
-# Concept: {{name}}
+# Concept: [Name]
 
-- **Date:** {{YYYY-MM-DD}}
-- **Phase / Folder:** {{e.g. Phase 3 — 05-deep-learning}}
-- **Mastery level (0–4):** {{level}}
+## 1. What is it?
 
-## Why does it exist? What problem does it solve?
+Explain the concept in simple language.
 
+## 2. Why does it exist?
 
+What problem led to its creation?
 
-## How does it work?
+## 3. What problem does it solve?
 
+What would be difficult or impossible without it?
 
+## 4. How does it work?
 
-## What are its assumptions?
+Explain the mechanism step by step.
 
+## 5. Mathematical foundation
 
+Include equations, assumptions, and derivations where relevant.
 
-## What are its trade-offs?
+## 6. Minimal implementation
 
+Can I implement a simplified version?
 
+## 7. Example
 
-## Minimal implementation
+Show a concrete example.
 
-{{link to code, or inline snippet}}
+## 8. Trade-offs and limitations
 
-## Can I explain it without notes?
+When does it work well? When does it fail?
 
-{{write the explanation cold, as if to an interviewer}}
+## 9. Where is it used?
 
-## Where does it show up in a real system?
+Connect it to real software or AI systems.
 
-{{connect to a project, tool, or paper}}
+## 10. My explanation
 
-## Related concepts
+Explain the concept in my own words, without looking at notes.
 
-{{links to other concept notes}}
+## 11. Progress level
+
+- [ ] 0 — Unfamiliar
+- [ ] 1 — Familiar
+- [ ] 2 — Working knowledge
+- [ ] 3 — Deep understanding
+- [ ] 4 — Advanced
