@@ -3,6 +3,8 @@ numpy
 pandas
 matplotlib
 jupyter
+nbformat
+nbconvert
 
 # Deep learning (installed separately via PyTorch's CUDA index — see notes/day1-setup-checklist.md)
 # torch --index-url https://download.pytorch.org/whl/cu128

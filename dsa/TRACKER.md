@@ -6,7 +6,8 @@ Fill in one row per attempt (Sunday redos and Saturday timed-redos get their own
 
 | Date | Day | Problem | Pattern | Solved Unaided (Y/N) | Time Taken | Peeked at Solution (Y/N) | Revisit Date | Notes / Trick |
 |---|---|---|---|---|---|---|---|---|
-| 2026-09-16 | Mon W1 | Contains Duplicate | Arrays & Hashing | | | | | |
+| 2026-09-16 | Mon W1 | Contains Duplicate | Arrays & Hashing | SKIPPED | — | — | catch-up | Track re-anchored to start 2026-09-18; do this on a catch-up day |
+| 2026-09-18 | Day 1 (re-anchored) | Valid Anagram | Arrays & Hashing | | | | | |
 
 ## Weakest patterns (update as you go)
 
@@ -20,3 +21,4 @@ Problems flagged "revisit in 4 days" — check this before starting each day's n
 
 | Problem | Flagged on | Revisit by | Done? |
 |---|---|---|---|
+| Contains Duplicate | 2026-09-18 | catch-up slot (e.g. next Sat/Sun) | No |
