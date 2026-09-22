@@ -88,6 +88,34 @@ Updated weekly, every Sunday. Newest entry on top.
 
 ---
 
+## Phase 1, Day 2 — 2026-09-22 (resumed after 5-day gap)
+
+**Phase:** 1 — Programming + CS + Math
+
+### Topics touched
+- Linear algebra: linear transformations (geometric meaning of matrices, determinant, invertibility, composition) — mastery: 2, targeting 3
+
+### Context
+- Returned after a 5-day gap. Offered a no-notes recall check on Day 1 material (matrix multiplication) before continuing; user chose to skip it and move straight to the next topic per the plan instead. DSA track separately reset to restart clean 2026-10-05 (see `dsa/TRACKER.md`).
+
+### Understanding
+- A matrix's columns directly show where the basis vectors land — this is the single fact that makes "what does this matrix do geometrically" readable without computation.
+- Determinant = area/volume scaling factor; det = 0 means the transformation is non-invertible (information is permanently lost, e.g. projection).
+- Matrix multiplication = composition of transformations — this is *why* AB != BA (order of operations matters, not just an algebraic quirk).
+- Connected to neural nets: linear transformations always fix the origin, which is exactly why layers need `Wx + b` (the `+b` enables translation) rather than just `Wx`.
+
+### Engineering
+- Implemented scale/rotation/projection matrix builders, verified the "columns = basis vector images" claim directly against NumPy, verified determinant behavior (rotation det=1, scale(2,3) det=6, projection det=0 and non-invertible), verified rotate-then-scale != scale-then-rotate. All 9 checks pass.
+
+### Evidence
+- `03-mathematics/linear-algebra/02-linear-transformations.md`, `03-mathematics/linear-algebra/linear_transformations.py`
+
+### Next starting point
+- Fill in section 10 of both linear algebra concept notes (own-words explanation) — still outstanding from Day 1 too.
+- Continue linear algebra block: eigenvalues/eigenvectors, then SVD, then Project 2 (linear regression via matrix ops).
+
+---
+
 ## DSA Track added — 2026-09-16
 
 Set up `dsa/` as an independent daily track (1 hour/day, Sep 16 2026 – Mar 31 2027), running in parallel to the main 2-hour roadmap track regardless of phase. Full plan in `dsa/SCHEDULE.md`, hour-by-hour structure and rules in `dsa/README.md`, per-attempt logging in `dsa/TRACKER.md`. Removed the now-redundant `01-programming/dsa/` folder — DSA lives at the top level since it isn't phase-bound.
