@@ -1,6 +1,6 @@
 # DSA Track — Daily 1-Hour LeetCode Plan
 
-**Duration:** Sep 16, 2026 → Mar 31, 2027 (28 weeks)
+**Duration:** originally Sep 16, 2026 → Mar 31, 2027 (28 weeks). **Restarted clean on Oct 5, 2026** after a 5-day gap broke the streak — Mon W1 in `SCHEDULE.md` now means Oct 5, not the printed Sep 16.
 **Cadence:** 1 hour daily, runs in parallel to the main 2-hour roadmap track — independent of which phase the main track is in.
 
 This is a problem-by-problem plan. No decision fatigue: open [`SCHEDULE.md`](SCHEDULE.md), find today, solve it.
