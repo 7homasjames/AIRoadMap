@@ -1,4 +1,7 @@
 .venv/
+*.exe
+*.o
+*.obj
 __pycache__/
 *.pyc
 .ipynb_checkpoints/

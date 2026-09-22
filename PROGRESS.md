@@ -88,6 +88,39 @@ Updated weekly, every Sunday. Newest entry on top.
 
 ---
 
+## Phase 1 sequencing decision — 2026-09-22
+
+Reviewed the Programming/CS priority 1 list (Python, C++, OOP, DSA, Git, Linux/Bash, debugging, testing, memory management, processes/threads, concurrency, networking, databases, SQL, MongoDB modeling) against progress so far — only linear algebra (math) had been touched; programming/CS hadn't started. Decision: **pause linear algebra after linear transformations (eigenvectors/SVD/Project 2 deferred) and switch to Programming/CS priority 1 for the rest of Phase 1**, rather than finishing math first.
+
+Noted: "data structures & algorithms" in this list overlaps with the DSA track (1hr/day, LeetCode-based, restarting 2026-10-05) — not duplicated in the main track. Remaining genuine gaps to prioritize: C++, OOP, Linux/Bash, SQL (Level 1-2, rusty); Python/Git skipped (Level 3, already strong); networking/databases/concurrency/testing/debugging/memory management get first-principles depth even though there's practical exposure via FastAPI/MongoDB (Level 2).
+
+Starting with **C++** first — biggest genuine gap, and foundational for later CUDA/systems work.
+
+## Phase 1, Day 3 — 2026-09-22: C++ compilation model, stack vs heap
+
+**Phase:** 1 — Programming + CS + Math (switched track: Programming/CS priority 1)
+
+### Topics touched
+- C++: compilation pipeline (preprocess/compile/link), stack vs heap memory, manual memory management (`new`/`delete`), memory leaks — mastery: 2, targeting 3
+
+### Understanding
+- Compilation trades a one-time build cost for fast runtime execution — the core reason C++ (not Python) is used for performance-critical ML infra, and directly relevant to CUDA later.
+- Stack: automatic, scope-tied lifetime, zero manual cleanup, but limited size/lifetime. Heap: explicit `new`/`delete`, flexible lifetime, but every allocation is the programmer's responsibility — this is the structural reason C++ has a whole class of bugs (leaks, double-free, use-after-free) that Python's GC makes impossible (at a runtime cost).
+- This directly sets up `cudaMalloc`/`cudaFree` in Phase 6 — same pattern, different device.
+
+### Engineering
+- Implemented and compiled `stack_vs_heap.cpp` (g++ 16.1.0, MinGW-W64) with a traced struct showing constructor/destructor calls: stack variable destroyed automatically, heap variable destroyed correctly after `delete`, and a deliberate leak where the destructor message never fires — makes the leak directly observable in program output.
+- Attempted AddressSanitizer (`-fsanitize=address`) to catch the leak programmatically — not available in this MinGW-w64 toolchain (missing `libasan`), noted as a known limitation in the file; the printed trace serves the same demonstration purpose without it.
+
+### Evidence
+- `01-programming/cpp/01-compilation-and-memory.md`, `01-programming/cpp/stack_vs_heap.cpp`
+
+### Next starting point
+- Fill in section 10 (own-words explanation) for this note plus the two outstanding linear algebra notes.
+- Continue C++: pointers vs references, then RAII/smart pointers (the modern fix for the manual `new`/`delete` danger just demonstrated) — then move through the rest of Programming/CS priority 1 (OOP, Linux/Bash, networking, SQL/MongoDB depth, concurrency, etc.)
+
+---
+
 ## Phase 1, Day 2 — 2026-09-22 (resumed after 5-day gap)
 
 **Phase:** 1 — Programming + CS + Math
