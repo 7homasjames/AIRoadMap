@@ -10,6 +10,7 @@ Fill in one row per attempt (Sunday redos and Saturday timed-redos get their own
 
 | Date | Day | Problem | Pattern | Solved Unaided (Y/N) | Time Taken | Peeked at Solution (Y/N) | Revisit Date | Notes / Trick |
 |---|---|---|---|---|---|---|---|---|
+| 2026-10-08 | Day 1 (Mon W1) | Contains Duplicate | Arrays & Hashing | N (user had the set idea; assistant explained approach and filled notebook at user's request) | — | Y | 2026-10-12 | Hash set for "seen before?": O(1) membership. Check before add, so you can return early. One-liner: `len(set(nums)) < len(nums)`. O(n) time / O(n) space. |
 
 ## Weakest patterns (update as you go)
 
@@ -23,6 +24,7 @@ Problems flagged "revisit in 4 days" — check this before starting each day's n
 
 | Problem | Flagged on | Revisit by | Done? |
 |---|---|---|---|
+| Contains Duplicate | 2026-10-08 | 2026-10-12 | |
 
 ## Attempt history (pre-restart, abandoned 2026-09-22)
 
