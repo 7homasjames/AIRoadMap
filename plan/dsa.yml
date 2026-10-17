@@ -1,0 +1,296 @@
+# DSA track — the 1-hour daily LeetCode plan (mirrors dsa/SCHEDULE.md, NeetCode-style pattern order).
+#
+# Single source of truth for the website's DSA view. SEQUENCE-based like the
+# main track: "today's problem" is the first entry whose notebook isn't in the repo.
+#
+# Each block = one pattern = one folder under dsa/. Each week lists 7 entries, Mon → Sun.
+# Entry fields:
+#   p:    problem title          slug: LeetCode URL slug        d: E | M | H
+#   kind: new (default) | timed (Saturday, 45-min hard stop) | redo (Sunday, from scratch, no notes)
+#   alt:  NeetCode slug for LeetCode-premium problems (free version on neetcode.io)
+#   task: free-text entry instead of a specific problem (catch-up, mock interviews…)
+#
+# DONE detection (the site tells you the exact filename for today):
+#   1st time a slug appears in the plan → dsa/<any-folder>/<slug>.ipynb   (or .py/.cpp)
+#   2nd, 3rd… time (redos, timed repeats) → dsa/<any-folder>/<slug>--2.ipynb, --3, …
+#   `task:` entries                     → dsa/<block-folder>/w<week>-<day>*   e.g. dsa/06-trees-2-heaps/w12-sun.md
+
+blocks:
+  - name: Arrays & Hashing
+    folder: 01-arrays-hashing
+    pos: [1, 0]
+    weeks:
+      - - {p: Contains Duplicate, slug: contains-duplicate, d: E}
+        - {p: Valid Anagram, slug: valid-anagram, d: E}
+        - {p: Two Sum, slug: two-sum, d: E}
+        - {p: Group Anagrams, slug: group-anagrams, d: M}
+        - {p: Top K Frequent Elements, slug: top-k-frequent-elements, d: M}
+        - {p: Product of Array Except Self, slug: product-of-array-except-self, d: M, kind: timed}
+        - {p: Two Sum, slug: two-sum, d: E, kind: redo}
+      - - {p: Valid Sudoku, slug: valid-sudoku, d: M}
+        - {p: Longest Consecutive Sequence, slug: longest-consecutive-sequence, d: M}
+        - {p: Majority Element, slug: majority-element, d: E}
+        - {p: Encode and Decode Strings, slug: encode-and-decode-strings, d: M, alt: string-encode-and-decode}
+        - {p: Subarray Sum Equals K, slug: subarray-sum-equals-k, d: M}
+        - {p: Product of Array Except Self, slug: product-of-array-except-self, d: M, kind: timed, note: aim faster than last week}
+        - {p: Group Anagrams, slug: group-anagrams, d: M, kind: redo}
+
+  - name: Two Pointers & Sliding Window
+    folder: 02-two-pointers-sliding-window
+    pos: [0, 1]
+    after: [Arrays & Hashing]
+    weeks:
+      - - {p: Valid Palindrome, slug: valid-palindrome, d: E}
+        - {p: Two Sum II – Input Array Is Sorted, slug: two-sum-ii-input-array-is-sorted, d: M}
+        - {p: 3Sum, slug: 3sum, d: M}
+        - {p: Container With Most Water, slug: container-with-most-water, d: M}
+        - {p: Best Time to Buy and Sell Stock, slug: best-time-to-buy-and-sell-stock, d: E}
+        - {p: Trapping Rain Water, slug: trapping-rain-water, d: H, kind: timed}
+        - {p: 3Sum, slug: 3sum, d: M, kind: redo}
+      - - {p: Longest Substring Without Repeating Characters, slug: longest-substring-without-repeating-characters, d: M}
+        - {p: Longest Repeating Character Replacement, slug: longest-repeating-character-replacement, d: M}
+        - {p: Permutation in String, slug: permutation-in-string, d: M}
+        - {p: Minimum Size Subarray Sum, slug: minimum-size-subarray-sum, d: M}
+        - {p: Sliding Window Maximum, slug: sliding-window-maximum, d: H}
+        - {p: Minimum Window Substring, slug: minimum-window-substring, d: H, kind: timed}
+        - {p: Longest Substring Without Repeating Characters, slug: longest-substring-without-repeating-characters, d: M, kind: redo}
+
+  - name: Stacks & Binary Search
+    folder: 03-stacks-binary-search
+    pos: [2, 1]
+    after: [Arrays & Hashing]
+    weeks:
+      - - {p: Valid Parentheses, slug: valid-parentheses, d: E}
+        - {p: Min Stack, slug: min-stack, d: M}
+        - {p: Evaluate Reverse Polish Notation, slug: evaluate-reverse-polish-notation, d: M}
+        - {p: Generate Parentheses, slug: generate-parentheses, d: M}
+        - {p: Daily Temperatures, slug: daily-temperatures, d: M}
+        - {p: Car Fleet, slug: car-fleet, d: M, kind: timed}
+        - {p: Min Stack, slug: min-stack, d: M, kind: redo}
+      - - {p: Binary Search, slug: binary-search, d: E}
+        - {p: Search a 2D Matrix, slug: search-a-2d-matrix, d: M}
+        - {p: Koko Eating Bananas, slug: koko-eating-bananas, d: M}
+        - {p: Find Minimum in Rotated Sorted Array, slug: find-minimum-in-rotated-sorted-array, d: M}
+        - {p: Search in Rotated Sorted Array, slug: search-in-rotated-sorted-array, d: M}
+        - {p: Median of Two Sorted Arrays, slug: median-of-two-sorted-arrays, d: H, kind: timed}
+        - {p: Search in Rotated Sorted Array, slug: search-in-rotated-sorted-array, d: M, kind: redo}
+
+  - name: Linked Lists
+    folder: 04-linked-lists
+    pos: [1, 2]
+    after: [Two Pointers & Sliding Window, Stacks & Binary Search]
+    weeks:
+      - - {p: Reverse Linked List, slug: reverse-linked-list, d: E}
+        - {p: Merge Two Sorted Lists, slug: merge-two-sorted-lists, d: E}
+        - {p: Reorder List, slug: reorder-list, d: M}
+        - {p: Remove Nth Node From End of List, slug: remove-nth-node-from-end-of-list, d: M}
+        - {p: Linked List Cycle, slug: linked-list-cycle, d: E}
+        - {p: Copy List with Random Pointer, slug: copy-list-with-random-pointer, d: M, kind: timed}
+        - {p: Reverse Linked List, slug: reverse-linked-list, d: E, kind: redo, note: iterative and recursive}
+      - - {p: Add Two Numbers, slug: add-two-numbers, d: M}
+        - {p: Find the Duplicate Number, slug: find-the-duplicate-number, d: M}
+        - {p: LRU Cache, slug: lru-cache, d: M, note: "part 1: design"}
+        - {p: LRU Cache, slug: lru-cache, d: M, note: "part 2: implement cleanly, no hints"}
+        - {p: Merge k Sorted Lists, slug: merge-k-sorted-lists, d: H}
+        - {p: Reorder List, slug: reorder-list, d: M, kind: timed, note: aim under 25 min}
+        - {p: LRU Cache, slug: lru-cache, d: M, kind: redo}
+
+  - name: Trees I
+    folder: 05-trees-1
+    pos: [1, 3]
+    after: [Linked Lists]
+    weeks:
+      - - {p: Invert Binary Tree, slug: invert-binary-tree, d: E}
+        - {p: Maximum Depth of Binary Tree, slug: maximum-depth-of-binary-tree, d: E}
+        - {p: Diameter of Binary Tree, slug: diameter-of-binary-tree, d: E}
+        - {p: Balanced Binary Tree, slug: balanced-binary-tree, d: E}
+        - {p: Same Tree, slug: same-tree, d: E}
+        - {p: Subtree of Another Tree, slug: subtree-of-another-tree, d: E, kind: timed}
+        - {p: Diameter of Binary Tree, slug: diameter-of-binary-tree, d: E, kind: redo}
+      - - {p: Lowest Common Ancestor of a BST, slug: lowest-common-ancestor-of-a-binary-search-tree, d: M}
+        - {p: Binary Tree Level Order Traversal, slug: binary-tree-level-order-traversal, d: M}
+        - {p: Binary Tree Right Side View, slug: binary-tree-right-side-view, d: M}
+        - {p: Count Good Nodes in Binary Tree, slug: count-good-nodes-in-binary-tree, d: M}
+        - {p: Validate Binary Search Tree, slug: validate-binary-search-tree, d: M}
+        - {p: Kth Smallest Element in a BST, slug: kth-smallest-element-in-a-bst, d: M, kind: timed}
+        - {p: Binary Tree Level Order Traversal, slug: binary-tree-level-order-traversal, d: M, kind: redo}
+
+  - name: Trees II & Heaps
+    folder: 06-trees-2-heaps
+    pos: [0, 4]
+    after: [Trees I]
+    weeks:
+      - - {p: Construct Binary Tree from Preorder and Inorder Traversal, slug: construct-binary-tree-from-preorder-and-inorder-traversal, d: M}
+        - {p: Binary Tree Maximum Path Sum, slug: binary-tree-maximum-path-sum, d: H}
+        - {p: Serialize and Deserialize Binary Tree, slug: serialize-and-deserialize-binary-tree, d: H}
+        - {p: Kth Largest Element in an Array, slug: kth-largest-element-in-an-array, d: M}
+        - {p: Last Stone Weight, slug: last-stone-weight, d: E}
+        - {p: K Closest Points to Origin, slug: k-closest-points-to-origin, d: M, kind: timed}
+        - {p: Kth Largest Element in an Array, slug: kth-largest-element-in-an-array, d: M, kind: redo}
+      - - {p: Task Scheduler, slug: task-scheduler, d: M}
+        - {p: Design Twitter, slug: design-twitter, d: M}
+        - {p: Find Median from Data Stream, slug: find-median-from-data-stream, d: H, note: part 1}
+        - {p: Find Median from Data Stream, slug: find-median-from-data-stream, d: H, note: "part 2, redo unaided"}
+        - {p: Merge k Sorted Lists, slug: merge-k-sorted-lists, d: H, kind: redo, note: heap approach}
+        - {p: Kth Largest Element in a Stream, slug: kth-largest-element-in-a-stream, d: E, kind: timed}
+        - {task: "Catch-up: redo your weakest problem from Trees I / Trees II & Heaps", kind: redo}
+
+  - name: Backtracking & Tries
+    folder: 07-backtracking-tries
+    pos: [2, 4]
+    after: [Trees I]
+    weeks:
+      - - {p: Subsets, slug: subsets, d: M}
+        - {p: Combination Sum, slug: combination-sum, d: M}
+        - {p: Permutations, slug: permutations, d: M}
+        - {p: Subsets II, slug: subsets-ii, d: M}
+        - {p: Word Search, slug: word-search, d: M}
+        - {p: Palindrome Partitioning, slug: palindrome-partitioning, d: M, kind: timed}
+        - {p: Subsets, slug: subsets, d: M, kind: redo}
+      - - {p: Letter Combinations of a Phone Number, slug: letter-combinations-of-a-phone-number, d: M}
+        - {p: N-Queens, slug: n-queens, d: H}
+        - {p: Implement Trie (Prefix Tree), slug: implement-trie-prefix-tree, d: M}
+        - {p: Design Add and Search Words Data Structure, slug: design-add-and-search-words-data-structure, d: M}
+        - {p: Word Search II, slug: word-search-ii, d: H}
+        - {p: Combination Sum II, slug: combination-sum-ii, d: M, kind: timed}
+        - {p: Word Search, slug: word-search, d: M, kind: redo}
+
+  - name: Graphs I
+    folder: 08-graphs-1
+    pos: [0, 5]
+    after: [Trees II & Heaps, Backtracking & Tries]
+    weeks:
+      - - {p: Number of Islands, slug: number-of-islands, d: M}
+        - {p: Max Area of Island, slug: max-area-of-island, d: M}
+        - {p: Clone Graph, slug: clone-graph, d: M}
+        - {p: Islands and Treasure (Walls and Gates), slug: walls-and-gates, d: M, alt: islands-and-treasure}
+        - {p: Rotting Oranges, slug: rotting-oranges, d: M}
+        - {p: Pacific Atlantic Water Flow, slug: pacific-atlantic-water-flow, d: M, kind: timed}
+        - {p: Number of Islands, slug: number-of-islands, d: M, kind: redo}
+      - - {p: Surrounded Regions, slug: surrounded-regions, d: M}
+        - {p: Course Schedule, slug: course-schedule, d: M}
+        - {p: Course Schedule II, slug: course-schedule-ii, d: M}
+        - {p: Redundant Connection, slug: redundant-connection, d: M}
+        - {p: Number of Connected Components in an Undirected Graph, slug: number-of-connected-components-in-an-undirected-graph, d: M, alt: count-connected-components}
+        - {p: Graph Valid Tree, slug: graph-valid-tree, d: M, kind: timed, alt: valid-tree}
+        - {p: Course Schedule, slug: course-schedule, d: M, kind: redo}
+
+  - name: Graphs II
+    folder: 09-graphs-2-advanced
+    pos: [0, 6]
+    after: [Graphs I]
+    weeks:
+      - - {p: Word Ladder, slug: word-ladder, d: H}
+        - {p: Network Delay Time, slug: network-delay-time, d: M, note: Dijkstra}
+        - {p: Reconstruct Itinerary, slug: reconstruct-itinerary, d: H}
+        - {p: Min Cost to Connect All Points, slug: min-cost-to-connect-all-points, d: M, note: "MST / Prim's"}
+        - {p: Swim in Rising Water, slug: swim-in-rising-water, d: H}
+        - {p: Cheapest Flights Within K Stops, slug: cheapest-flights-within-k-stops, d: M, kind: timed}
+        - {p: Network Delay Time, slug: network-delay-time, d: M, kind: redo}
+      - - {p: Alien Dictionary, slug: alien-dictionary, d: H, alt: foreign-dictionary, note: topological sort}
+        - {p: Accounts Merge, slug: accounts-merge, d: M, note: Union-Find}
+        - {p: Evaluate Division, slug: evaluate-division, d: M}
+        - {p: Course Schedule II, slug: course-schedule-ii, d: M, kind: redo, note: unaided}
+        - {task: "Catch-up: your weakest graph problem", kind: redo}
+        - {task: "Timed: a mixed graph problem you haven't seen", kind: timed}
+        - {task: "Write BFS / DFS / Union-Find / Dijkstra templates from memory", kind: redo}
+
+  - name: 1-D Dynamic Programming
+    folder: 10-dp-1d
+    pos: [2, 5]
+    after: [Backtracking & Tries]
+    weeks:
+      - - {p: Climbing Stairs, slug: climbing-stairs, d: E}
+        - {p: Min Cost Climbing Stairs, slug: min-cost-climbing-stairs, d: E}
+        - {p: House Robber, slug: house-robber, d: M}
+        - {p: House Robber II, slug: house-robber-ii, d: M}
+        - {p: Longest Palindromic Substring, slug: longest-palindromic-substring, d: M}
+        - {p: Palindromic Substrings, slug: palindromic-substrings, d: M, kind: timed}
+        - {p: House Robber, slug: house-robber, d: M, kind: redo}
+      - - {p: Decode Ways, slug: decode-ways, d: M}
+        - {p: Coin Change, slug: coin-change, d: M}
+        - {p: Maximum Product Subarray, slug: maximum-product-subarray, d: M}
+        - {p: Word Break, slug: word-break, d: M}
+        - {p: Longest Increasing Subsequence, slug: longest-increasing-subsequence, d: M}
+        - {p: Coin Change, slug: coin-change, d: M, kind: timed, note: faster this time}
+        - {p: Longest Palindromic Substring, slug: longest-palindromic-substring, d: M, kind: redo}
+
+  - name: 2-D Dynamic Programming
+    folder: 11-dp-2d-knapsack-strings
+    pos: [2, 6]
+    after: [1-D Dynamic Programming]
+    weeks:
+      - - {p: Partition Equal Subset Sum, slug: partition-equal-subset-sum, d: M}
+        - {p: Unique Paths, slug: unique-paths, d: M}
+        - {p: Longest Common Subsequence, slug: longest-common-subsequence, d: M}
+        - {p: Best Time to Buy and Sell Stock with Cooldown, slug: best-time-to-buy-and-sell-stock-with-cooldown, d: M}
+        - {p: Coin Change II, slug: coin-change-ii, d: M}
+        - {p: Target Sum, slug: target-sum, d: M, kind: timed}
+        - {p: Longest Common Subsequence, slug: longest-common-subsequence, d: M, kind: redo}
+      - - {p: Interleaving String, slug: interleaving-string, d: M}
+        - {p: Edit Distance, slug: edit-distance, d: M}
+        - {p: Regular Expression Matching, slug: regular-expression-matching, d: H}
+        - {task: "Catch-up: your weakest DP problem", kind: redo}
+        - {task: "Catch-up: your second-weakest DP problem", kind: redo}
+        - {p: Burst Balloons, slug: burst-balloons, d: H, kind: timed}
+        - {task: "Recite the DP recurrence patterns you've used, no notes", kind: redo}
+
+  - name: Greedy, Intervals & Bits
+    folder: 12-greedy-intervals-bits
+    pos: [1, 7]
+    after: [Graphs II, 2-D Dynamic Programming]
+    weeks:
+      - - {p: Maximum Subarray, slug: maximum-subarray, d: M}
+        - {p: Jump Game, slug: jump-game, d: M}
+        - {p: Jump Game II, slug: jump-game-ii, d: M}
+        - {p: Gas Station, slug: gas-station, d: M}
+        - {p: Insert Interval, slug: insert-interval, d: M}
+        - {p: Merge Intervals, slug: merge-intervals, d: M, kind: timed}
+        - {p: Jump Game II, slug: jump-game-ii, d: M, kind: redo}
+      - - {p: Non-overlapping Intervals, slug: non-overlapping-intervals, d: M}
+        - {p: Meeting Rooms II, slug: meeting-rooms-ii, d: M, alt: meeting-schedule-ii}
+        - {p: Single Number, slug: single-number, d: E}
+        - {p: Number of 1 Bits, slug: number-of-1-bits, d: E}
+        - {p: Counting Bits, slug: counting-bits, d: E}
+        - {p: Reverse Bits, slug: reverse-bits, d: E, kind: timed}
+        - {task: "Catch-up: your weakest problem from Greedy / Intervals / Bits", kind: redo}
+
+  - name: Design & Company Prep
+    folder: 13-ood-system-design-lite
+    pos: [1, 8]
+    after: [Greedy, Intervals & Bits]
+    weeks:
+      - - {p: Insert Delete GetRandom O(1), slug: insert-delete-getrandom-o1, d: M}
+        - {p: LFU Cache, slug: lfu-cache, d: H}
+        - {p: Time Based Key-Value Store, slug: time-based-key-value-store, d: M}
+        - {p: Design Underground System, slug: design-underground-system, d: M}
+        - {task: "Design a parking lot — whiteboard OOD + rough code"}
+        - {task: "Timed: top problem from your target company's LeetCode tag", kind: timed}
+        - {p: LFU Cache, slug: lfu-cache, d: H, kind: redo}
+      - - {task: "Target company 'most frequent' problem #1"}
+        - {task: "Target company 'most frequent' problem #2"}
+        - {task: "Target company 'most frequent' problem #3"}
+        - {task: "Target company 'most frequent' problem #4"}
+        - {task: "Target company 'most frequent' problem #5"}
+        - {task: "Timed: hardest problem from that company list", kind: timed}
+        - {task: "Redo your single weakest problem from the whole plan", kind: redo}
+
+  - name: Mock Interviews
+    folder: 14-mock-interviews-final-review
+    pos: [1, 9]
+    after: [Design & Company Prep]
+    weeks:
+      - - {task: "Mock: timed mixed problem from your weakest pattern + explain it out loud", kind: timed}
+        - {task: "Mock: timed mixed problem from your weakest pattern + explain it out loud", kind: timed}
+        - {task: "Mock: timed mixed problem from your weakest pattern + explain it out loud", kind: timed}
+        - {task: "Mock: timed mixed problem from your weakest pattern + explain it out loud", kind: timed}
+        - {task: "Mock: timed mixed problem from your weakest pattern + explain it out loud", kind: timed}
+        - {task: "Full mock interview with a partner (Pramp / interviewing.io)", kind: timed}
+        - {task: "Full mock interview with a partner (Pramp / interviewing.io)", kind: timed}
+      - - {task: "Mock: timed mixed problem + explain it out loud", kind: timed}
+        - {task: "Taper: revisit starred problems", kind: redo}
+        - {task: "Taper: revisit starred problems", kind: redo}
+        - {task: "Taper: revisit starred problems", kind: redo}
+        - {task: "Taper: light review only", kind: redo}
+        - {task: "Taper: light review only", kind: redo}
+        - {task: "Rest. You're done.", kind: redo}

@@ -1,0 +1,913 @@
+# Main track — the 2-hour daily roadmap, one entry per study day.
+#
+# This file is the single source of truth for the roadmap website (site/).
+# It is SEQUENCE-based, not date-based: "today" is the first day whose
+# evidence isn't in the repo yet. Miss a day and nothing breaks — the
+# timeline just shows you drifting against the original target dates.
+#
+# A day is DONE when its `evidence` matches a file in the repo:
+#   evidence: path/glob*            -> any file matching the glob
+#   evidence: [glob1, glob2]        -> any of them
+#   evidence: "FILE::some text"     -> FILE exists and contains "some text"
+#
+# kind: lesson (default) | project | review
+# steps: optional custom time-boxed plan for that day, e.g. [["30m", "Read chapter 3"], ["1h", "Implement X"]]
+# Weekday shape: 5 lessons → 1 project day → 1 review day.
+
+start: 2026-09-15
+end: 2027-04-30   # main track ends ~Mar 31; April is buffer + DSA finish
+
+phases:
+  - id: 0
+    name: Setup & baseline
+    target: [2026-09-15, 2026-09-20]
+  - id: 1
+    name: Programming + CS + Math
+    target: [2026-09-21, 2026-10-25]
+  - id: 2
+    name: Classical ML + Scientific Python
+    target: [2026-10-26, 2026-11-22]
+  - id: 3
+    name: Deep Learning + PyTorch
+    target: [2026-11-23, 2026-12-20]
+  - id: 4
+    name: Transformers + LLMs
+    target: [2026-12-21, 2027-01-31]
+  - id: 5
+    name: RAG + Agents
+    target: [2027-02-01, 2027-02-28]
+  - id: 6
+    name: Systems + Deployment
+    target: [2027-03-01, 2027-03-31]
+
+weeks:
+  # ───────────────────────────── Phase 0 ─────────────────────────────
+  - title: Setup & baseline
+    phase: 0
+    days:
+      - title: Repo, environment audit & baseline levels
+        learn: "What do I actually know vs. merely use? Rate every area 0–4."
+        build: "Scaffold the repo, audit the toolchain, write the baseline table."
+        evidence: notes/day1-setup-checklist.md
+      - title: Verify the dev environment end-to-end
+        learn: "venv, CUDA builds of PyTorch, why the RTX 5060 needs cu128."
+        build: "Train a tiny model on the GPU and confirm it converges."
+        evidence: notes/day2-gpu-check.py
+
+  # ───────────────────────────── Phase 1 ─────────────────────────────
+  - title: Linear algebra, first pass
+    phase: 1
+    days:
+      - title: Vectors, matrices & matrix multiplication
+        learn: "Matrix multiplication is repeated weighted sums — why it's everywhere in NNs."
+        build: "dot / matvec / matmul in pure Python, checked against NumPy."
+        evidence: 03-mathematics/linear-algebra/01-vectors-matrices.md
+      - title: Linear transformations & determinants
+        learn: "Columns are where basis vectors land; det = area scaling; AB ≠ BA because order of operations."
+        build: "Scale/rotate/project matrices, verify determinant behaviour."
+        evidence: 03-mathematics/linear-algebra/02-linear-transformations.md
+
+  - title: C++ foundations
+    phase: 1
+    days:
+      - title: Compilation model & stack vs heap
+        learn: "Preprocess → compile → link; who owns heap memory."
+        build: "Traced struct showing stack cleanup, delete, and a visible leak."
+        evidence: 01-programming/cpp/01-compilation-and-memory.md
+      - title: "Day 1 · Reading assembly"
+        learn: "What the compiler turns your code into."
+        build: "Compile with -S and annotate the output."
+        evidence: "01-programming/cpp/day1[-.]*"
+      - title: "Day 2 · Stack, heap, pointers & references"
+        learn: "Addresses, indirection, and what a reference really is."
+        build: "Pointer/reference exercises."
+        evidence: "01-programming/cpp/day2[-.]*"
+      - title: "Day 3 · Functions, stack frames & lifetime"
+        learn: "Why returning a pointer to a local is a bug."
+        build: "Demonstrate a dangling pointer and fix it."
+        evidence: "01-programming/cpp/day3[-.]*"
+      - title: "Day 4 · Arrays, vectors & memory layout"
+        learn: "Contiguous memory, capacity vs size, why vector growth is amortised O(1)."
+        build: "Day 4 challenge."
+        evidence: "01-programming/cpp/day4[-.]*"
+      - title: "Day 5 · Strings, characters & text in memory"
+        learn: "char, null terminators, std::string, encodings."
+        build: "Day 5 challenge."
+        evidence: "01-programming/cpp/day5[-.]*"
+      - title: "Day 6 · Searching & sorting"
+        learn: "Linear vs binary search, bubble sort, what 'sorted' buys you."
+        build: "Day 6 challenge."
+        evidence: "01-programming/cpp/day6[-.]*"
+      - title: "Day 7 · Big-O"
+        learn: "How work grows with input size, independent of the machine."
+        build: "Time the algorithms you wrote at n = 10³…10⁶."
+        evidence: "01-programming/cpp/day7[-.]*"
+      - title: "Review 01 · C++ foundations"
+        kind: review
+        learn: "No-notes recall: stack vs heap, dangling pointers, vector growth, Big-O of search/sort."
+        build: "Fill in section 10 ('My explanation') of the outstanding concept notes. Add a '## Review 01' entry to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 01"
+
+  - title: C++ objects, ownership & the STL
+    phase: 1
+    days:
+      - title: "Day 8 · Structs, classes, constructors & destructors"
+        learn: "A class is data + the invariants that protect it. When do ctor/dtor run?"
+        build: "A BankAccount class with private state, validated methods, and a traced destructor."
+        evidence: "01-programming/cpp/day8[-.]*"
+      - title: "Day 9 · RAII & smart pointers"
+        learn: "Tie resource lifetime to scope. unique_ptr vs shared_ptr vs raw pointer."
+        build: "Rewrite stack_vs_heap.cpp's leak with unique_ptr and show the destructor now fires."
+        evidence: "01-programming/cpp/day9[-.]*"
+      - title: "Day 10 · Copy vs move semantics"
+        learn: "Rule of 0/3/5, lvalues vs rvalues, why std::move is just a cast."
+        build: "A buffer class with copy & move ctors; count allocations for each."
+        evidence: "01-programming/cpp/day10[-.]*"
+      - title: "Day 11 · Inheritance, virtual functions & vtables"
+        learn: "Dynamic dispatch — what the vtable pointer costs and buys."
+        build: "Shape hierarchy; print sizeof with/without virtual; read the assembly of a virtual call."
+        evidence: "01-programming/cpp/day11[-.]*"
+      - title: "Day 12 · Templates & STL containers"
+        learn: "Templates = compile-time code generation. Complexity of vector/list/map/unordered_map."
+        build: "Benchmark lookup in vector vs map vs unordered_map at n = 10⁶."
+        evidence: "01-programming/cpp/day12[-.]*"
+      - title: "Project · Vector<T> from scratch"
+        kind: project
+        learn: "Put RAII, move semantics and templates together."
+        build: "Implement Vector<T> (push_back, growth, copy/move, iterator), test against std::vector, measure amortised push_back."
+        evidence: projects/cpp-vector/README.md
+      - title: "Review 02 · Ownership in C++"
+        kind: review
+        learn: "Explain RAII, move semantics and vtables out loud with no notes."
+        build: "Add '## Review 02' to PROGRESS.md: what stuck, what didn't, levels updated."
+        evidence: "PROGRESS.md::Review 02"
+
+  - title: Linux, processes & concurrency
+    phase: 1
+    days:
+      - title: Linux & Bash essentials
+        learn: "Everything is a file: paths, permissions (rwx/chmod), pipes, redirection, env vars."
+        build: "A bash script that finds the 10 largest files in the repo and counts lines per language. Set up a real WSL distro."
+        evidence: 01-programming/linux/01-*
+      - title: Processes
+        learn: "What a process is: address space, PID, fork/exec, signals, exit codes."
+        build: "Spawn/kill processes from Bash and Python (subprocess); watch them with ps/top."
+        evidence: 02-computer-science/operating-systems/01-*
+      - title: Threads & shared memory
+        learn: "Threads share an address space — and therefore race conditions."
+        build: "C++ std::thread counter race; fix it with a mutex and with std::atomic; time all three."
+        evidence: 02-computer-science/operating-systems/02-*
+      - title: Concurrency in Python — GIL, threads, asyncio, processes
+        learn: "Why I/O-bound and CPU-bound work need different tools."
+        build: "Same workload with threads, asyncio and multiprocessing; explain each timing."
+        evidence: 02-computer-science/operating-systems/03-*
+      - title: Testing & debugging
+        learn: "What a good test pins down; reading stack traces; breakpoints in gdb/pdb."
+        build: "pytest suite for your linear-algebra code (incl. edge cases); step through a bug in gdb."
+        evidence: 01-programming/python/01-*
+      - title: "Project · Concurrency experiment"
+        kind: project
+        learn: "Measure instead of guess."
+        build: "100 HTTP requests: sequential → asyncio → threads; then a CPU-bound task. Plot latency/throughput, write up why."
+        evidence: projects/concurrency-experiment/README.md
+      - title: "Review 03 · OS & concurrency"
+        kind: review
+        learn: "Process vs thread vs coroutine — explain the trade-offs without notes."
+        build: "Add '## Review 03' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 03"
+
+  - title: Networking & databases
+    phase: 1
+    days:
+      - title: TCP/IP & sockets
+        learn: "Layers, IP addresses, ports, the TCP handshake, why TCP is reliable and UDP isn't."
+        build: "TCP echo server + client in Python with raw sockets."
+        evidence: 02-computer-science/networking/01-*
+      - title: HTTP, DNS & TLS — what happens when you type a URL
+        learn: "DNS lookup → TCP → TLS handshake → HTTP request/response."
+        build: "Send a raw HTTP request over a socket; inspect with curl -v, nslookup and openssl s_client."
+        evidence: 02-computer-science/networking/02-*
+      - title: SQL fundamentals
+        learn: "Relational model, SELECT/WHERE/JOIN/GROUP BY, normalization (1NF–3NF)."
+        build: "Design a small schema in SQLite and answer 10 questions with SQL."
+        evidence: 11-backend/01-sql-*
+      - title: Indexes & query plans
+        learn: "B-trees, why an index turns O(n) into O(log n), and when it doesn't help."
+        build: "EXPLAIN QUERY PLAN before/after an index on 1M rows; time both."
+        evidence: 11-backend/02-*
+      - title: Transactions, ACID & document databases
+        learn: "Atomicity/isolation levels; when MongoDB's embed-vs-reference beats tables."
+        build: "Reproduce a lost update without a transaction, fix it; model one dataset both ways in Mongo."
+        evidence: 11-backend/03-*
+      - title: "Project · HTTP server + SQLite, no frameworks"
+        kind: project
+        learn: "See what FastAPI does for you by doing it yourself once."
+        build: "Socket-level HTTP server with 3 JSON endpoints backed by SQLite. Then the same in FastAPI — compare."
+        evidence: projects/raw-http-server/README.md
+      - title: "Review 04 · Networking & data"
+        kind: review
+        learn: "Whiteboard the URL → page journey and an index lookup from memory."
+        build: "Add '## Review 04' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 04"
+
+  - title: Linear algebra → probability
+    phase: 1
+    days:
+      - title: Eigenvalues & eigenvectors
+        learn: "Directions a matrix only stretches. What they mean geometrically."
+        build: "Power iteration from scratch; compare with np.linalg.eig; visualise on 2×2 matrices."
+        evidence: 03-mathematics/linear-algebra/03-*
+      - title: SVD
+        learn: "Every matrix = rotate · scale · rotate. Low-rank approximation."
+        build: "Compress an image with truncated SVD; plot error vs rank."
+        evidence: 03-mathematics/linear-algebra/04-*
+      - title: Least squares & the normal equation
+        learn: "Projection onto a column space = linear regression."
+        build: "Derive XᵀXw = Xᵀy on paper, then code it."
+        evidence: 03-mathematics/linear-algebra/05-*
+      - title: Random variables & distributions
+        learn: "Discrete vs continuous, PMF/PDF/CDF, Bernoulli, binomial, Gaussian."
+        build: "Simulate each distribution and overlay the analytic curve."
+        evidence: 03-mathematics/probability-statistics/01-*
+      - title: Conditional probability & Bayes
+        learn: "P(A|B), independence, Bayes' theorem — the base-rate fallacy."
+        build: "Medical-test Bayes example, by hand and by simulation."
+        evidence: 03-mathematics/probability-statistics/02-*
+      - title: "Project 2 · Linear regression via matrix ops"
+        kind: project
+        learn: "Close the loop from linear algebra to ML."
+        build: "Normal-equation regression on a real dataset, compared with np.linalg.lstsq and sklearn."
+        evidence: projects/linear-regression-matrix/README.md
+      - title: "Review 05 · Linear algebra"
+        kind: review
+        learn: "Explain eigenvectors and SVD geometrically, no notes."
+        build: "Add '## Review 05' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 05"
+
+  - title: Statistics & calculus for ML
+    phase: 1
+    days:
+      - title: Expectation, variance, LLN & CLT
+        learn: "Why averages stabilise and why sums look Gaussian."
+        build: "Simulate the CLT from a very non-Gaussian distribution."
+        evidence: 03-mathematics/probability-statistics/03-*
+      - title: Sampling, confidence intervals & hypothesis tests
+        learn: "What a p-value is and isn't; bootstrap CIs."
+        build: "Bootstrap a CI and run a t-test on a real dataset; explain uncertainty."
+        evidence: 03-mathematics/probability-statistics/04-*
+      - title: Derivatives, partials & gradients
+        learn: "Why the gradient is a vector, and why it points uphill."
+        build: "Numerical vs analytic gradients for f(x, y); plot the gradient field."
+        evidence: 03-mathematics/calculus/01-*
+      - title: Chain rule & Jacobians
+        learn: "Composed functions → multiplied derivatives. The seed of backprop."
+        build: "Hand-derive the gradient of a 2-layer function and verify numerically."
+        evidence: 03-mathematics/calculus/02-*
+      - title: Gradient descent, SGD, momentum & Adam
+        learn: "Why GD works, learning rates, why Adam adapts per-parameter."
+        build: "All four optimisers on the Rosenbrock function; plot their paths."
+        evidence: 03-mathematics/optimization/01-*
+      - title: "Project · Gradient descent from scratch"
+        kind: project
+        learn: "Optimisation you can see."
+        build: "GD for linear regression; animate convergence; show divergence with too-large LR."
+        evidence: projects/gradient-descent/README.md
+      - title: "Review 06 · Phase 1 exit"
+        kind: review
+        learn: "Answer the Phase 1 exit questions in full-plan.md with no notes."
+        build: "Add '## Review 06' to PROGRESS.md with your answers and updated levels."
+        evidence: "PROGRESS.md::Review 06"
+
+  # ───────────────────────────── Phase 2 ─────────────────────────────
+  - title: Scientific Python & ML foundations
+    phase: 2
+    days:
+      - title: NumPy for real — vectorisation & broadcasting
+        learn: "Why vectorised code is 100× faster; broadcasting rules."
+        build: "Rewrite a loop-heavy function vectorised; time both."
+        evidence: 04-machine-learning/01-*
+      - title: Pandas & exploratory data analysis
+        learn: "groupby/merge/pivot, missing data, distributions and outliers."
+        build: "Full EDA of a real tabular dataset with matplotlib plots."
+        evidence: 04-machine-learning/02-*
+      - title: The ML setup — splits, loss, over/underfitting
+        learn: "Train/val/test, bias–variance, what generalisation means."
+        build: "Fit polynomials of degree 1–15; plot train vs val error."
+        evidence: 04-machine-learning/03-*
+      - title: Regularised linear regression
+        learn: "Ridge and lasso as constraints; why L1 gives sparsity."
+        build: "Ridge/lasso from scratch with GD; plot coefficient paths."
+        evidence: 04-machine-learning/04-*
+      - title: Logistic regression & cross-entropy
+        learn: "Sigmoid → probability → cross-entropy → gradient. Derive it."
+        build: "Logistic regression from scratch in NumPy."
+        evidence: 04-machine-learning/05-*
+      - title: "Project · Logistic regression vs sklearn"
+        kind: project
+        learn: "Your implementation must match the library."
+        build: "Your model vs sklearn on a real dataset: same accuracy, same coefficients (within tolerance)."
+        evidence: projects/logreg-from-scratch/README.md
+      - title: "Review 07 · ML foundations"
+        kind: review
+        learn: "Derive the logistic regression gradient on paper, no notes."
+        build: "Add '## Review 07' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 07"
+
+  - title: Classical algorithms
+    phase: 2
+    days:
+      - title: KNN & Naive Bayes
+        learn: "Instance-based vs probabilistic; the curse of dimensionality; the independence assumption."
+        build: "Both from scratch; spam classification with Naive Bayes."
+        evidence: 04-machine-learning/06-*
+      - title: Decision trees
+        learn: "Greedy splits, entropy vs Gini, why trees overfit."
+        build: "A decision tree from scratch (classification)."
+        evidence: 04-machine-learning/07-*
+      - title: Random forests & bagging
+        learn: "Averaging decorrelated trees reduces variance."
+        build: "Bag your own trees; compare with RandomForestClassifier."
+        evidence: 04-machine-learning/08-*
+      - title: Gradient boosting & XGBoost
+        learn: "Fitting residuals sequentially; boosting reduces bias."
+        build: "Gradient boosting for regression from scratch; then tune XGBoost."
+        evidence: 04-machine-learning/09-*
+      - title: Support vector machines
+        learn: "Max-margin, hinge loss, the kernel trick."
+        build: "Linear SVM via subgradient descent; RBF kernel on non-linear data with sklearn."
+        evidence: 04-machine-learning/10-*
+      - title: "Project · Algorithm bake-off"
+        kind: project
+        learn: "Which model, when, and why."
+        build: "Run all models on one dataset with consistent CV; write up the results and failure cases."
+        evidence: projects/ml-bakeoff/README.md
+      - title: "Review 08 · Classical algorithms"
+        kind: review
+        learn: "For each algorithm: objective, assumptions, failure mode — from memory."
+        build: "Add '## Review 08' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 08"
+
+  - title: Evaluation & unsupervised learning
+    phase: 2
+    days:
+      - title: Classification metrics
+        learn: "Confusion matrix, precision/recall/F1, ROC-AUC vs PR-AUC — when each lies."
+        build: "Implement every metric from scratch; check against sklearn."
+        evidence: 04-machine-learning/11-*
+      - title: Class imbalance & data leakage
+        learn: "Why 99% accuracy can be useless; the leakage you don't notice."
+        build: "Create a leaky pipeline on purpose, catch it, fix it."
+        evidence: 04-machine-learning/12-*
+      - title: Cross-validation & hyperparameter tuning
+        learn: "k-fold, stratified, time-series CV; grid vs random search."
+        build: "Nested CV for a model you trained this phase."
+        evidence: 04-machine-learning/13-*
+      - title: Feature engineering & selection
+        learn: "Encoding, scaling, interactions; filter/wrapper/embedded selection."
+        build: "Improve the bake-off model via features only; measure the gain."
+        evidence: 04-machine-learning/14-*
+      - title: K-means & PCA
+        learn: "Clustering as optimisation; PCA = SVD of centred data."
+        build: "K-means and PCA from scratch; visualise a dataset in 2D."
+        evidence: 04-machine-learning/15-*
+      - title: "Project 3 · End-to-end ML pipeline"
+        kind: project
+        learn: "Raw data → served prediction."
+        build: "Cleaning → EDA → baseline → features → models → evaluation → error analysis → FastAPI endpoint. (Docker comes in Phase 6.)"
+        evidence: projects/ml-pipeline/README.md
+      - title: "Review 09 · Phase 2 exit"
+        kind: review
+        learn: "Explain your Project 3 decisions as if in an interview."
+        build: "Add '## Review 09' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 09"
+
+  # ───────────────────────────── Phase 3 ─────────────────────────────
+  - title: Neural networks from scratch
+    phase: 3
+    days:
+      - title: Perceptrons & MLP forward pass
+        learn: "Neurons as Wx + b plus a nonlinearity; why depth needs activations."
+        build: "Forward pass of a 2-layer MLP in NumPy, shapes annotated."
+        evidence: 05-deep-learning/01-*
+      - title: Backpropagation by hand
+        learn: "Backprop is the chain rule on a computational graph."
+        build: "Hand-derive gradients for a 2-layer MLP; check numerically."
+        evidence: 05-deep-learning/02-*
+      - title: Scalar autograd (micrograd-style)
+        learn: "How autograd actually records and replays the graph."
+        build: "A Value class with +, *, tanh and backward(); train a tiny MLP with it."
+        evidence: 05-deep-learning/03-*
+      - title: Activations, initialisation & losses
+        learn: "Vanishing gradients, Xavier/He init, MSE vs cross-entropy."
+        build: "Plot activation/gradient histograms per layer under different inits."
+        evidence: 05-deep-learning/04-*
+      - title: Regularisation — dropout, weight decay, batch norm
+        learn: "Why each works and what it costs at train vs inference time."
+        build: "Add each to your NumPy net; compare val curves."
+        evidence: 05-deep-learning/05-*
+      - title: "Project 4 · NumPy neural net on MNIST"
+        kind: project
+        learn: "Your own backprop, a real dataset."
+        build: "Pure-NumPy MLP to >95% on MNIST, with loss curves and error analysis."
+        evidence: projects/numpy-nn/README.md
+      - title: "Review 10 · Backprop"
+        kind: review
+        learn: "Derive backprop for a 2-layer net on a blank page."
+        build: "Add '## Review 10' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 10"
+
+  - title: PyTorch
+    phase: 3
+    days:
+      - title: Tensors, shapes & broadcasting
+        learn: "Strides, views vs copies, dtype/device."
+        build: "20 shape puzzles; predict the result before running each."
+        evidence: 05-deep-learning/06-*
+      - title: Autograd in PyTorch
+        learn: "requires_grad, the graph, .backward(), no_grad, detach."
+        build: "Reproduce your micrograd MLP in PyTorch; compare gradients."
+        evidence: 05-deep-learning/07-*
+      - title: nn.Module, Dataset & DataLoader
+        learn: "How PyTorch organises parameters and data."
+        build: "Port the MNIST net to nn.Module with a custom Dataset."
+        evidence: 05-deep-learning/08-*
+      - title: Training on the GPU
+        learn: "Device placement, checkpoints, mixed precision, what makes GPU training fast."
+        build: "Train on the RTX 5060 with AMP; checkpoint and resume."
+        evidence: 05-deep-learning/09-*
+      - title: Debugging training & experiment tracking
+        learn: "Overfit one batch first; reading loss curves; logging runs."
+        build: "Break training 5 ways on purpose; diagnose each from the curves."
+        evidence: 05-deep-learning/10-*
+      - title: "Project 5 · PyTorch project"
+        kind: project
+        learn: "A clean, reproducible training codebase."
+        build: "Custom train/val loop, checkpointing, metrics, tracked experiments and error analysis on a dataset you choose."
+        evidence: projects/pytorch-project/README.md
+      - title: "Review 11 · PyTorch"
+        kind: review
+        learn: "Write a training loop from memory."
+        build: "Add '## Review 11' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 11"
+
+  - title: CNNs, sequences & attention
+    phase: 3
+    days:
+      - title: Convolutions from scratch
+        learn: "Local receptive fields and weight sharing — why CNNs fit images."
+        build: "conv2d in NumPy; check against torch.nn.functional.conv2d."
+        evidence: 06-computer-vision/01-*
+      - title: CNN architectures & transfer learning
+        learn: "LeNet → VGG → ResNet; why skip connections work."
+        build: "Fine-tune a pretrained ResNet on a small dataset."
+        evidence: 06-computer-vision/02-*
+      - title: Augmentation & object detection
+        learn: "IoU, anchors, NMS, how YOLO frames detection."
+        build: "Implement IoU and NMS; run YOLO on your own images."
+        evidence: 06-computer-vision/03-*
+      - title: RNNs, LSTMs & GRUs
+        learn: "Recurrence, vanishing gradients through time, gating."
+        build: "Character-level RNN in PyTorch."
+        evidence: 05-deep-learning/11-*
+      - title: Attention — the bridge to transformers
+        learn: "Why a fixed hidden state bottlenecks; attention as soft lookup."
+        build: "Add attention to a seq2seq toy task and visualise the weights."
+        evidence: 05-deep-learning/12-*
+      - title: "Project 6 · Computer vision"
+        kind: project
+        learn: "A CV project in a domain you understand (e.g. basketball)."
+        build: "Classification or YOLO detection with your own data, evaluation and failure analysis."
+        evidence: projects/computer-vision/README.md
+      - title: "Review 12 · Phase 3 exit"
+        kind: review
+        learn: "How does a network represent, predict, measure error and update?"
+        build: "Add '## Review 12' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 12"
+
+  # ───────────────────────────── Phase 4 ─────────────────────────────
+  - title: Transformer internals
+    phase: 4
+    days:
+      - title: Tokenisation & BPE
+        learn: "Why subwords; how BPE merges are learned."
+        build: "Train a BPE tokenizer from scratch on a text file."
+        evidence: 07-transformers/01-*
+      - title: Embeddings & positional encoding
+        learn: "Token embeddings, sinusoidal vs learned vs RoPE."
+        build: "Implement sinusoidal and RoPE; visualise them."
+        evidence: 07-transformers/02-*
+      - title: Scaled dot-product attention
+        learn: "Q, K, V mathematically; why divide by √d."
+        build: "Attention from scratch; show softmax saturation without the √d."
+        evidence: 07-transformers/03-*
+      - title: Multi-head attention & causal masking
+        learn: "Parallel subspaces; why decoders can't see the future."
+        build: "Multi-head causal attention module, tested against nn.MultiheadAttention."
+        evidence: 07-transformers/04-*
+      - title: The transformer block
+        learn: "FFN, residual stream, LayerNorm, pre-norm vs post-norm."
+        build: "Full decoder block; verify shapes and gradient flow."
+        evidence: 07-transformers/05-*
+      - title: "Project · Tiny GPT forward pass"
+        kind: project
+        learn: "Assemble the whole machine."
+        build: "Embeddings + N blocks + LM head, outputting logits for a prompt."
+        evidence: projects/tiny-transformer/README.md
+      - title: "Review 13 · Attention"
+        kind: review
+        learn: "Trace a token through a transformer, no notes."
+        build: "Add '## Review 13' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 13"
+
+  - title: Training a tiny transformer
+    phase: 4
+    days:
+      - title: The language-modelling objective
+        learn: "Next-token prediction, cross-entropy, perplexity."
+        build: "Training loop for your tiny GPT on a toy corpus."
+        evidence: 07-transformers/06-*
+      - title: Training it for real
+        learn: "LR schedules, warmup, gradient clipping, overfitting a small corpus."
+        build: "Train on tiny-shakespeare on the GPU; log loss."
+        evidence: 07-transformers/07-*
+      - title: Decoding strategies
+        learn: "Greedy, temperature, top-k, top-p — what each does to the distribution."
+        build: "Implement all four; compare samples."
+        evidence: 07-transformers/08-*
+      - title: KV cache & inference cost
+        learn: "Why generation is memory-bound; what the KV cache saves."
+        build: "Add a KV cache; measure tokens/sec before and after."
+        evidence: 07-transformers/09-*
+      - title: BERT vs GPT vs T5
+        learn: "Encoder, decoder, encoder–decoder: objectives and use cases."
+        build: "Use one of each from Hugging Face on the same task."
+        evidence: 07-transformers/10-*
+      - title: "Project · Tiny Transformer, trained"
+        kind: project
+        learn: "The major milestone."
+        build: "A trained decoder-only model + write-up answering the Phase 4 target questions."
+        evidence: "projects/tiny-transformer/README.md::Results"
+      - title: "Review 14 · Transformers"
+        kind: review
+        learn: "Train vs inference, Q/K/V, √d, masking, residuals — from memory."
+        build: "Add '## Review 14' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 14"
+
+  - title: LLMs — adapting models
+    phase: 4
+    days:
+      - title: Pretraining & scaling laws
+        learn: "Data, compute, parameters — what Chinchilla says."
+        build: "Fit a scaling curve on your tiny model at 3 sizes."
+        evidence: 08-llms/01-*
+      - title: Hugging Face in depth
+        learn: "Tokenizers, AutoModel, generate(), chat templates."
+        build: "Load a small open model locally; inspect its tokenizer and config."
+        evidence: 08-llms/02-*
+      - title: SFT & instruction tuning
+        learn: "From a next-token predictor to an assistant."
+        build: "Prepare an instruction dataset with the right chat format and masking."
+        evidence: 08-llms/03-*
+      - title: LoRA
+        learn: "Low-rank updates: why ΔW = BA works and saves memory."
+        build: "Implement a LoRA linear layer from scratch; count trainable params."
+        evidence: 08-llms/04-*
+      - title: Quantisation & QLoRA
+        learn: "int8/int4, NF4, what precision loss costs."
+        build: "Load a model in 4-bit; compare memory and output quality."
+        evidence: 08-llms/05-*
+      - title: "Project 7 · Fine-tuning — baseline"
+        kind: project
+        learn: "No fine-tune without a baseline."
+        build: "Pick a problem, build the dataset and an eval set, measure the base model."
+        evidence: projects/fine-tuning/README.md
+      - title: "Review 15 · Adapting LLMs"
+        kind: review
+        learn: "Explain LoRA's maths and QLoRA's memory savings, no notes."
+        build: "Add '## Review 15' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 15"
+
+  - title: LLMs — evaluation, alignment & local inference
+    phase: 4
+    days:
+      - title: Evaluating LLMs
+        learn: "Benchmarks, held-out evals, LLM-as-judge and its biases."
+        build: "An eval harness for your fine-tuning task."
+        evidence: 08-llms/06-*
+      - title: RLHF & DPO
+        learn: "Reward models, PPO at a high level, DPO's loss derived."
+        build: "Derive the DPO loss on paper; run a tiny DPO step."
+        evidence: 08-llms/07-*
+      - title: Hallucination & structured output
+        learn: "Why models confabulate; constrained decoding, JSON schemas."
+        build: "Force valid JSON with constrained decoding on a local model."
+        evidence: 08-llms/08-*
+      - title: Tool calling from scratch
+        learn: "Tool calling is just structured output plus a loop."
+        build: "A tool-calling loop with no framework."
+        evidence: 08-llms/09-*
+      - title: Local LLMs — GGUF & llama.cpp
+        learn: "Quantised formats, CPU/GPU offload."
+        build: "Run a GGUF model with llama.cpp; benchmark the quant levels."
+        evidence: 08-llms/10-*
+      - title: "Project 7 · Fine-tuning — train & evaluate"
+        kind: project
+        learn: "Problem → baseline → change → measured effect."
+        build: "LoRA/QLoRA fine-tune; before/after eval; failure analysis; limitations."
+        evidence: "projects/fine-tuning/README.md::Results"
+      - title: "Review 16 · LLMs"
+        kind: review
+        learn: "What did fine-tuning actually change? Defend it with numbers."
+        build: "Add '## Review 16' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 16"
+
+  - title: Inference & GPU fundamentals
+    phase: 4
+    days:
+      - title: Serving LLMs — vLLM & batching
+        learn: "Continuous batching, PagedAttention, throughput vs latency."
+        build: "Serve a model with vLLM (WSL); load-test it."
+        evidence: 08-llms/11-*
+      - title: Inference optimisation
+        learn: "Quantisation, speculative decoding, FlashAttention — where the time goes."
+        build: "Profile one generation; find the bottleneck."
+        evidence: 08-llms/12-*
+      - title: GPU architecture
+        learn: "SMs, warps, memory hierarchy; why GPUs win at matmul."
+        build: "Measure your GPU's memory bandwidth and FLOPs with PyTorch."
+        evidence: 02-computer-science/computer-architecture/01-*
+      - title: CUDA programming model
+        learn: "Threads, blocks, grids, kernels."
+        build: "Vector-add and naive matmul kernels in CUDA C++."
+        evidence: 02-computer-science/computer-architecture/02-*
+      - title: CUDA memory — shared memory & coalescing
+        learn: "Why tiling makes matmul fast."
+        build: "Tiled matmul with shared memory; profile with Nsight."
+        evidence: 02-computer-science/computer-architecture/03-*
+      - title: "Project · CUDA matmul benchmark"
+        kind: project
+        learn: "Close the gap to cuBLAS as far as you can."
+        build: "Naive vs tiled vs torch.matmul — GFLOPs table and explanation."
+        evidence: projects/cuda-matmul/README.md
+      - title: "Review 17 · Phase 4 exit"
+        kind: review
+        learn: "Explain an LLM from token to served response."
+        build: "Add '## Review 17' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 17"
+
+  # ───────────────────────────── Phase 5 ─────────────────────────────
+  - title: Retrieval
+    phase: 5
+    days:
+      - title: Document processing & chunking
+        learn: "Parsing PDFs/HTML; fixed vs semantic vs structural chunking."
+        build: "Three chunkers on the same corpus; inspect their boundaries."
+        evidence: 09-rag/01-*
+      - title: Embeddings & vector search
+        learn: "Cosine similarity; brute force vs IVF vs HNSW."
+        build: "Brute-force search, then FAISS; recall vs latency."
+        evidence: 09-rag/02-*
+      - title: Vector databases & metadata filtering
+        learn: "What Qdrant/Pinecone add beyond FAISS."
+        build: "Index your corpus in Qdrant with filters."
+        evidence: 09-rag/03-*
+      - title: Hybrid search
+        learn: "BM25 + dense, reciprocal rank fusion."
+        build: "Implement BM25 and RRF; compare with dense-only."
+        evidence: 09-rag/04-*
+      - title: Reranking
+        learn: "Bi-encoder vs cross-encoder: cost vs precision."
+        build: "Add a cross-encoder reranker; measure the gain."
+        evidence: 09-rag/05-*
+      - title: "Project 8 · RAG pipeline"
+        kind: project
+        learn: "A real corpus, a real question set."
+        build: "End-to-end RAG over a corpus you care about, with a gold question set."
+        evidence: projects/rag-system/README.md
+      - title: "Review 18 · Retrieval"
+        kind: review
+        learn: "Justify every retrieval choice you made."
+        build: "Add '## Review 18' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 18"
+
+  - title: RAG evaluation → agents
+    phase: 5
+    days:
+      - title: Retrieval evaluation
+        learn: "recall@k, MRR, nDCG; building a gold set."
+        build: "Implement the metrics; evaluate each retriever variant."
+        evidence: 09-rag/06-*
+      - title: RAG evaluation
+        learn: "Faithfulness, answer relevance, abstaining when the answer is absent."
+        build: "An eval suite incl. unanswerable questions."
+        evidence: 09-rag/07-*
+      - title: Advanced RAG
+        learn: "Query rewriting, HyDE, multi-hop, GraphRAG (Neo4j/Cypher)."
+        build: "Try two techniques; keep only what the evals say helps."
+        evidence: 09-rag/08-*
+      - title: Agent fundamentals
+        learn: "An agent is a loop: model → tool → observation → model."
+        build: "A minimal agent with no framework, two tools."
+        evidence: 10-agents/01-*
+      - title: Agent state, memory & planning
+        learn: "Short- vs long-term memory; plan-and-execute vs ReAct."
+        build: "Add explicit state and memory to your agent."
+        evidence: 10-agents/02-*
+      - title: "Project 8 · Evaluated RAG write-up"
+        kind: project
+        learn: "The questions an interviewer will ask."
+        build: "Corpus, chunking rationale, retrieval metrics, faithfulness, latency, cost, doc updates — all answered with numbers."
+        evidence: "projects/rag-system/README.md::Evaluation"
+      - title: "Review 19 · RAG"
+        kind: review
+        learn: "Explain how you know your RAG system works."
+        build: "Add '## Review 19' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 19"
+
+  - title: Reliable agents
+    phase: 5
+    days:
+      - title: LangGraph & human-in-the-loop
+        learn: "Agents as explicit state machines; interrupts for approval."
+        build: "Rebuild your agent in LangGraph with an approval step."
+        evidence: 10-agents/03-*
+      - title: Multi-agent — when (not) to
+        learn: "Function vs workflow vs single agent vs multi-agent."
+        build: "Solve one task all four ways; compare cost and reliability."
+        evidence: 10-agents/04-*
+      - title: Agent evaluation & observability
+        learn: "Trajectory evals, tracing with LangSmith."
+        build: "An eval set of agent tasks plus traces."
+        evidence: 10-agents/05-*
+      - title: Guardrails & failure recovery
+        learn: "Validation, retries, timeouts, safe tool design."
+        build: "Inject tool failures; make the agent recover."
+        evidence: 10-agents/06-*
+      - title: MCP
+        learn: "The Model Context Protocol: servers, tools, resources."
+        build: "Write an MCP server exposing one of your tools."
+        evidence: 10-agents/07-*
+      - title: "Project 9 · Reliable agent system"
+        kind: project
+        learn: "Production-shaped agent."
+        build: "Explicit state, tool schemas, validation, retries, human approval, tracing, eval cases."
+        evidence: projects/agent-system/README.md
+      - title: "Review 20 · Phase 5 exit"
+        kind: review
+        learn: "When would you NOT use an agent?"
+        build: "Add '## Review 20' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 20"
+
+  # ───────────────────────────── Phase 6 ─────────────────────────────
+  - title: Backend engineering
+    phase: 6
+    days:
+      - title: REST API design
+        learn: "Resources, status codes, versioning, pagination, idempotency."
+        build: "Design (on paper) the API for your agent system."
+        evidence: 11-backend/04-*
+      - title: FastAPI, async & Pydantic in depth
+        learn: "The event loop, what blocks it, streaming and WebSockets."
+        build: "Stream LLM tokens over SSE and WebSocket; find a blocking call."
+        evidence: 11-backend/05-*
+      - title: Auth — JWT & OAuth2
+        learn: "Authn vs authz, token flows, what a JWT does and doesn't prove."
+        build: "JWT auth with scopes on your API."
+        evidence: 11-backend/06-*
+      - title: Rate limiting & caching with Redis
+        learn: "Token bucket, cache invalidation, semantic caching for LLMs."
+        build: "A Redis rate limiter and response cache."
+        evidence: 11-backend/07-*
+      - title: SOLID, design patterns & clean architecture
+        learn: "Dependency inversion, ports & adapters — applied, not memorised."
+        build: "Refactor your API so the LLM provider is swappable."
+        evidence: 01-programming/python/02-*
+      - title: "Project · Production API"
+        kind: project
+        learn: "Your RAG/agent behind a real API."
+        build: "Auth, rate limiting, streaming, tests, OpenAPI docs."
+        evidence: projects/ai-api/README.md
+      - title: "Review 21 · Backend"
+        kind: review
+        learn: "Walk a request through your API, layer by layer."
+        build: "Add '## Review 21' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 21"
+
+  - title: Docker, DevOps & distributed systems
+    phase: 6
+    days:
+      - title: Docker images & containers
+        learn: "Layers, namespaces/cgroups, multi-stage builds."
+        build: "Dockerise Project 3's API; shrink the image with a multi-stage build."
+        evidence: 13-mlops/01-*
+      - title: Compose, networking & volumes
+        learn: "Service discovery by name, persistence."
+        build: "Compose: API + Redis + Qdrant."
+        evidence: 13-mlops/02-*
+      - title: CI/CD with GitHub Actions
+        learn: "Pipelines, caching, tests as a gate."
+        build: "CI that tests and builds the image on every push."
+        evidence: 13-mlops/03-*
+      - title: Message queues & event-driven design
+        learn: "Kafka vs RabbitMQ; idempotency; at-least-once delivery."
+        build: "Move document ingestion to a queue + worker."
+        evidence: 12-distributed-systems/01-*
+      - title: Distributed systems fundamentals
+        learn: "CAP, eventual consistency, retries, circuit breakers."
+        build: "Add a circuit breaker around the LLM call; chaos-test it."
+        evidence: 12-distributed-systems/02-*
+      - title: "Project 10 · Dockerised AI system"
+        kind: project
+        learn: "Everything runs with one command."
+        build: "docker compose up → API, worker, queue, cache, vector DB."
+        evidence: projects/deployed-ai-system/README.md
+      - title: "Review 22 · Infra"
+        kind: review
+        learn: "What fails first under load, and how would you know?"
+        build: "Add '## Review 22' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 22"
+
+  - title: MLOps & cloud
+    phase: 6
+    days:
+      - title: Experiment tracking & model registry
+        learn: "MLflow runs, artifacts, model stages."
+        build: "Track Project 3 experiments in MLflow; register the best model."
+        evidence: 13-mlops/04-*
+      - title: Data versioning & reproducibility
+        learn: "DVC, seeds, pinned environments."
+        build: "Reproduce a training run bit-for-bit from a clean clone."
+        evidence: 13-mlops/05-*
+      - title: Monitoring, logging & drift
+        learn: "Data drift vs model drift; structured logs and metrics."
+        build: "Prometheus/Grafana or equivalent on your API; simulate drift."
+        evidence: 13-mlops/06-*
+      - title: AWS fundamentals
+        learn: "IAM, EC2, S3, VPC — just enough to deploy."
+        build: "Deploy your compose stack to a single EC2 instance."
+        evidence: 13-mlops/07-*
+      - title: Kubernetes fundamentals
+        learn: "Pods, deployments, services, config/secrets, autoscaling."
+        build: "Run the API on a local cluster (kind/minikube) with an HPA."
+        evidence: 13-mlops/08-*
+      - title: "Project 10 · Cloud deployment + monitoring"
+        kind: project
+        learn: "Live, observable, reproducible."
+        build: "Deployed system with monitoring, a dashboard and a runbook."
+        evidence: "projects/deployed-ai-system/README.md::Deployment"
+      - title: "Review 23 · MLOps"
+        kind: review
+        learn: "How would you roll back a bad model?"
+        build: "Add '## Review 23' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 23"
+
+  - title: System design
+    phase: 6
+    days:
+      - title: System design fundamentals
+        learn: "Scalability, availability, latency vs throughput, load balancing, CDNs."
+        build: "Design a URL shortener end to end; estimate the numbers."
+        evidence: 14-system-design/01-*
+      - title: Data at scale
+        learn: "Replication, sharding, OLTP vs OLAP (ClickHouse)."
+        build: "Design the data layer for a chat app with 10M users."
+        evidence: 14-system-design/02-*
+      - title: LLM system design
+        learn: "Serving, batching, caching, routing, cost per request."
+        build: "Design a ChatGPT-style service; estimate GPU count."
+        evidence: 14-system-design/03-*
+      - title: RAG system design at scale
+        learn: "Ingestion pipelines, index refresh, multi-tenant retrieval."
+        build: "Design enterprise RAG for 1M documents."
+        evidence: 14-system-design/04-*
+      - title: Agent system design
+        learn: "Long-running tasks, state persistence, approvals, observability."
+        build: "Design a customer-support agent platform."
+        evidence: 14-system-design/05-*
+      - title: "Project 11 · Design doc for your capstone"
+        kind: project
+        learn: "Show the thinking, not just the code."
+        build: "A full design doc for your ontology-backed memory/agent system."
+        evidence: projects/capstone-design/README.md
+      - title: "Review 24 · System design"
+        kind: review
+        learn: "Do a 45-minute mock system design interview."
+        build: "Add '## Review 24' to PROGRESS.md."
+        evidence: "PROGRESS.md::Review 24"
+
+  - title: Finish line
+    phase: 6
+    days:
+      - title: Portfolio polish
+        learn: "What a reviewer sees in 30 seconds."
+        build: "Top-level README linking each project with a one-line result."
+        evidence: "README.md::## Portfolio"
+      - title: Final baseline re-assessment
+        learn: "Re-rate every area 0–4 against the Sep 15 baseline."
+        build: "Add the re-assessment table to PROGRESS.md under 'Final assessment'."
+        evidence: "PROGRESS.md::Final assessment"
+      - title: Retrospective & next plan
+        kind: review
+        learn: "What worked, what didn't, what's next (CUDA depth? research?)."
+        build: "Add '## Retrospective' to PROGRESS.md."
+        evidence: "PROGRESS.md::## Retrospective"

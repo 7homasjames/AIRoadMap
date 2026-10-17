@@ -24,6 +24,21 @@ For each important concept:
 
 Not "finish 379 topics." Target: become someone who understands the foundations of computing and AI deeply enough to build, evaluate, debug, and explain serious AI systems.
 
+## Roadmap website
+
+**Live:** https://7homasjames.github.io/AIRoadMap/ — rebuilt automatically on every push to `main` (`.github/workflows/pages.yml`).
+
+```bash
+python site/build.py --open     # rebuild from the repo and open the site
+python site/build.py --today    # or just print today's plan in the terminal
+```
+
+Three views: **Today** (the main-track day, the DSA problem with its LeetCode link, and the revisit queue), **Calendar** (every day from today to Apr 30, 2027 — click a day, then open its full time-boxed plan) and **DSA** (a NeetCode-style pattern roadmap).
+
+- The plan lives in [`plan/roadmap.yml`](plan/roadmap.yml) (main track) and [`plan/dsa.yml`](plan/dsa.yml) (DSA). Edit those to change the plan.
+- **A day ticks off when its evidence file is in the repo.** Each day lists its evidence, e.g. `01-programming/cpp/day8-*` or `dsa/01-arrays-hashing/two-sum.ipynb`. Review days look for a heading such as `Review 02` in `PROGRESS.md`.
+- The schedule follows the order of the days, not fixed dates. Today is always the first unfinished day, so a missed day pushes the projected dates back without breaking the plan.
+
 ## Daily structure
 
 Two parallel tracks, every day:
