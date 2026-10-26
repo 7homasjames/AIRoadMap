@@ -24,7 +24,7 @@ Problems flagged "revisit in 4 days" — check this before starting each day's n
 
 | Problem | Flagged on | Revisit by | Done? |
 |---|---|---|---|
-| Contains Duplicate | 2026-10-08 | 2026-10-12 | |
+| Contains Duplicate | 2026-10-08 | 2026-10-26 | |
 
 ## Attempt history (pre-restart, abandoned 2026-09-22)
 

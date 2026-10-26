@@ -33,7 +33,7 @@ python site/build.py --open     # rebuild from the repo and open the site
 python site/build.py --today    # or just print today's plan in the terminal
 ```
 
-Three views: **Today** (the main-track day, the DSA problem with its LeetCode link, and the revisit queue), **Calendar** (every day from today to Apr 30, 2027 — click a day, then open its full time-boxed plan) and **DSA** (a NeetCode-style pattern roadmap).
+Three views: **Today** (the main-track day, the DSA problem with its LeetCode link, and the revisit queue), **Calendar** (every day from today to May 9, 2027 — click a day, then open its full time-boxed plan) and **DSA** (a NeetCode-style pattern roadmap).
 
 - The plan lives in [`plan/roadmap.yml`](plan/roadmap.yml) (main track) and [`plan/dsa.yml`](plan/dsa.yml) (DSA). Edit those to change the plan.
 - **A day ticks off when its evidence file is in the repo.** Each day lists its evidence, e.g. `01-programming/cpp/day8-*` or `dsa/01-arrays-hashing/two-sum.ipynb`. Review days look for a heading such as `Review 02` in `PROGRESS.md`.
@@ -58,15 +58,17 @@ Target profile by March 2027: **Level 3** on core programming/math/ML/DL/transfo
 
 ## Phases
 
+Re-baselined on 2026-10-26: the remaining days now run from that date, one per day.
+
 | Phase | Dates | Objective | Folder(s) |
 |---|---|---|---|
 | 0. Setup & baseline | Sep 15–20 | Environment, repo, baseline assessment | — |
-| 1. Programming + CS + Math | Sep 21–Oct 25 | Foundations beneath existing AI work | `01-programming`, `02-computer-science`, `03-mathematics` |
-| 2. Classical ML + Scientific Python | Oct 26–Nov 22 | How learning algorithms work | `04-machine-learning` |
-| 3. Deep Learning + PyTorch | Nov 23–Dec 20 | Implement and train neural networks | `05-deep-learning`, `06-computer-vision` |
-| 4. Transformers + LLMs | Dec 21–Jan 31 | Understand modern LLMs from the inside | `07-transformers`, `08-llms` |
-| 5. RAG + Agents + AI Backend | Feb 1–Feb 28 | Reliable, evaluated AI applications | `09-rag`, `10-agents`, `11-backend` |
-| 6. Systems + Deployment + Specialization | Mar 1–Mar 31 | Engineering depth + portfolio | `12-distributed-systems`, `13-mlops`, `14-system-design` |
+| 1. Programming + CS + Math | Sep 21–Nov 30 | Foundations beneath existing AI work | `01-programming`, `02-computer-science`, `03-mathematics` |
+| 2. Classical ML + Scientific Python | Dec 1–Dec 21 | How learning algorithms work | `04-machine-learning` |
+| 3. Deep Learning + PyTorch | Dec 22–Jan 11 | Implement and train neural networks | `05-deep-learning`, `06-computer-vision` |
+| 4. Transformers + LLMs | Jan 12–Feb 15 | Understand modern LLMs from the inside | `07-transformers`, `08-llms` |
+| 5. RAG + Agents + AI Backend | Feb 16–Mar 8 | Reliable, evaluated AI applications | `09-rag`, `10-agents`, `11-backend` |
+| 6. Systems + Deployment + Specialization | Mar 9–Apr 8 | Engineering depth + portfolio | `12-distributed-systems`, `13-mlops`, `14-system-design` |
 
 Full phase-by-phase topic breakdown lives in [`notes/full-plan.md`](notes/full-plan.md).
 
