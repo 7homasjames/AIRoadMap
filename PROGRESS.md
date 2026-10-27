@@ -4,6 +4,24 @@ Updated weekly, every Sunday. Newest entry on top.
 
 ---
 
+## Day 8 — Structs, classes, constructors & destructors — 2026-10-27
+
+**Phase:** 1 — Programming + CS + Math
+
+### Topics touched
+- `struct` vs `class` (only the default access differs), encapsulation, invariants, constructors with initializer lists and validation, destructors and object lifetime.
+
+### Engineering
+- `01-programming/cpp/day8.cpp`: a `BankAccount` with private balance, a validating constructor, `deposit`/`withdraw` that enforce the rules, a `const` getter and a tracing destructor. It shows destruction at the end of a block, reverse destruction order for two objects, a heap object destroyed at `delete`, and a failed construction where no destructor runs. Compiles cleanly with `-Wall -Wextra -pedantic`. The solution was written by Claude at my request.
+
+### Evidence
+- `01-programming/cpp/day8-lesson-structs-classes.md`, `01-programming/cpp/day8.cpp`
+
+### Next starting point
+- Day 9: RAII and smart pointers. Rewrite the `stack_vs_heap.cpp` leak with `unique_ptr`.
+
+---
+
 ## Review 01 — C++ foundations — 2026-10-27
 
 **Phase:** 1 — Programming + CS + Math (plan restarted 2026-10-26, see `plan/roadmap.yml`)
