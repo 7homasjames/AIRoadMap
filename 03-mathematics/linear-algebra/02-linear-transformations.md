@@ -69,7 +69,11 @@ The point that was pointing along x now points along y — a quarter turn, exact
 
 ## 10. My explanation
 
-*(Fill in after working through `linear_transformations.py` — explain, in your own words and without looking back, what a matrix's columns tell you about the transformation it represents.)*
+*(Written by Claude at my request on 2026-10-27, not yet from my own recall. Rewrite this in my own words at the next review.)*
+
+The columns are where the basis vectors end up. Column 1 is where `[1, 0]` lands and column 2 is where `[0, 1]` lands. Every other vector is a combination of those two, and the transformation is linear, so knowing where the basis vectors go tells you where everything goes. You can read off what a matrix does without computing anything. `[[0, -1], [1, 0]]` sends x to y and y to −x, so it's a 90° rotation.
+
+The determinant is how much area gets scaled. If it's 0, the columns point along the same line, space gets flattened, and you can't undo it. Multiplying matrices means applying one transformation after another, which is why the order matters.
 
 ## 11. Progress level
 

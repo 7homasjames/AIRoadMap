@@ -85,7 +85,11 @@ where `W` is a weight matrix, `x` is the input vector, `b` is a bias vector. "Tr
 
 ## 10. My explanation
 
-*(Fill this in yourself after working through `vectors_matrices.py` — explain matrix multiplication in your own words, without looking back at this file. This is the actual test of whether it stuck.)*
+*(Written by Claude at my request on 2026-10-27, not yet from my own recall. Rewrite this in my own words at the next review.)*
+
+Each output number is a weighted sum. To get entry `i` of `Ax`, take row `i` of `A`, multiply it element by element with `x`, and add the results. That's a dot product. Multiplying two matrices `AB` is the same thing done once per column of `B`: entry `(i, j)` is row `i` of `A` dotted with column `j` of `B`. The inner sizes have to match, so (m×n)(n×p) gives (m×p).
+
+This matters because a neural-network layer is exactly this: every output neuron is a weighted sum of the inputs, and the weights are a row of `W`. Order matters (`AB ≠ BA`), but grouping doesn't (`(AB)C = A(BC)`).
 
 ## 11. Progress level
 

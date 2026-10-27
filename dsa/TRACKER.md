@@ -11,6 +11,8 @@ Fill in one row per attempt (Sunday redos and Saturday timed-redos get their own
 | Date | Day | Problem | Pattern | Solved Unaided (Y/N) | Time Taken | Peeked at Solution (Y/N) | Revisit Date | Notes / Trick |
 |---|---|---|---|---|---|---|---|---|
 | 2026-10-08 | Day 1 (Mon W1) | Contains Duplicate | Arrays & Hashing | N (user had the set idea; assistant explained approach and filled notebook at user's request) | — | Y | 2026-10-12 | Hash set for "seen before?": O(1) membership. Check before add, so you can return early. One-liner: `len(set(nums)) < len(nums)`. O(n) time / O(n) space. |
+| 2026-10-27 | Revisit | Contains Duplicate | Arrays & Hashing | Self-reported Y (not saved to repo) | — | — | — | Revisit from the 2026-10-08 attempt. |
+| 2026-10-27 | Wed W1 | Two Sum | Arrays & Hashing | N (notebook written by assistant at user's request) | — | Y | 2026-10-31 | Hash map value → index. For each x, check whether `target - x` is already in the map *before* storing x. That handles the same-element case. O(n) time / O(n) space. |
 
 ## Weakest patterns (update as you go)
 
@@ -24,7 +26,8 @@ Problems flagged "revisit in 4 days" — check this before starting each day's n
 
 | Problem | Flagged on | Revisit by | Done? |
 |---|---|---|---|
-| Contains Duplicate | 2026-10-08 | 2026-10-26 | |
+| Contains Duplicate | 2026-10-08 | 2026-10-26 | 2026-10-27 (self-reported) |
+| Two Sum | 2026-10-27 | 2026-10-31 | |
 
 ## Attempt history (pre-restart, abandoned 2026-09-22)
 

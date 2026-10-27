@@ -73,7 +73,11 @@ void heapExample() {
 
 ## 10. My explanation
 
-*(Fill in after working through `stack_vs_heap.cpp` — explain, in your own words, why C++ requires explicit `delete` and what goes wrong if you forget it.)*
+*(Written by Claude at my request on 2026-10-27, not yet from my own recall. Rewrite this in my own words at the next review.)*
+
+C++ has no garbage collector, so nothing watches heap memory to see when it's no longer used. The stack cleans itself up because a function's frame is popped when it returns. Memory from `new` isn't tied to any scope, though, so the program has no way to know when you're finished with it. That's why you have to say so with `delete`.
+
+Forget the `delete` and the memory stays reserved until the program exits. That's a leak. One leak is harmless, but a leak inside a loop or a long-running server keeps growing. Get it wrong the other way and you have a worse bug. Deleting twice, or using the pointer after deleting it (a dangling pointer), is undefined behaviour. It may work, crash, or quietly corrupt other data. Smart pointers (`unique_ptr`) fix this by tying the `delete` to a scope, so it happens automatically.
 
 ## 11. Progress level
 

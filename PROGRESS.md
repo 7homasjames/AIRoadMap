@@ -4,6 +4,35 @@ Updated weekly, every Sunday. Newest entry on top.
 
 ---
 
+## Review 01 — C++ foundations — 2026-10-27
+
+**Phase:** 1 — Programming + CS + Math (plan restarted 2026-10-26, see `plan/roadmap.yml`)
+
+> Note: I told Claude I'd done today's review and DSA work, but none of it had been saved to the repo. At my request, Claude wrote the section 10 explanations, this entry and the Two Sum notebook. Treat it as reference material, not as proof of recall. Redo the recall properly at the next review day.
+
+### Recall targets (Days 1–7)
+- **Stack vs heap:** the stack is automatic and tied to scope. Heap memory from `new` lasts until `delete`, so a missing `delete` leaks and a double `delete` or use-after-free is undefined behaviour.
+- **Dangling pointers:** returning the address of a local gives you a pointer into a stack frame that's already been popped.
+- **Vector growth:** when capacity runs out, the vector reallocates (typically doubling) and copies. Total copies stay at O(n), so `push_back` is amortised O(1).
+- **Big-O:** linear search O(n), binary search O(log n) but needs sorted input, bubble sort O(n²).
+
+### Concept notes completed (section 10)
+- `01-programming/cpp/01-compilation-and-memory.md`
+- `03-mathematics/linear-algebra/01-vectors-matrices.md`
+- `03-mathematics/linear-algebra/02-linear-transformations.md`
+
+### DSA
+- Contains Duplicate revisit, self-reported done.
+- Two Sum (Wed W1): notebook written by Claude at my request. It's in the revisit queue to redo unaided by 2026-10-31.
+
+### Levels
+- Unchanged until I can do the recall unaided. C++ memory model: 2. Linear algebra (matmul, transformations): 2.
+
+### Next starting point
+- Day 8: structs, classes, constructors & destructors (BankAccount class).
+
+---
+
 ## Baseline — 2026-09-15 / 2026-09-16
 
 **Phase:** 0 — Setup & Baseline
