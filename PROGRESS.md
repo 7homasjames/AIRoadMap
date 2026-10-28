@@ -4,6 +4,26 @@ Updated weekly, every Sunday. Newest entry on top.
 
 ---
 
+## Day 9 — RAII & smart pointers — 2026-10-28
+
+**Phase:** 1 — Programming + CS + Math
+
+### Topics touched
+- Resources and ownership, pointer lifetime vs pointee lifetime, RAII, `std::unique_ptr` (exclusive, move-only), `std::shared_ptr` (shared, destroyed when the last owner lets go), when raw pointers are still fine (non-owning access).
+
+### Engineering
+- `stack_vs_heap.cpp`: added `heapExampleUniquePtr()`, the Day 1 leak rewritten with `make_unique`. `Traced(4)` is now destroyed with no `delete` written, while the original leak (`Traced(3)`) is kept for comparison.
+- `day9.cpp`: runs the lesson's experiments. With a `unique_ptr`, the object is destroyed at the end of its block, or at the end of the function once the braces are removed. A raw pointer without `delete` leaks, and with `delete` the object is destroyed exactly there. On an early return the raw pointer leaks while the `unique_ptr` still cleans up. It also shows the `shared_ptr` owner count going 1 → 2 → 1 → destroyed, and `std::move` leaving the source `unique_ptr` empty.
+- Both compile cleanly with `-Wall -Wextra -pedantic`. The solutions were written by Claude at my request.
+
+### Evidence
+- `01-programming/cpp/day9-lesson-raii-smart-pointers.md`, `01-programming/cpp/day9.cpp`, `01-programming/cpp/stack_vs_heap.cpp`
+
+### Next starting point
+- Day 10: copy vs move semantics. A class owning a heap buffer, with a deep-copy and a move constructor.
+
+---
+
 ## Day 8 — Structs, classes, constructors & destructors — 2026-10-27
 
 **Phase:** 1 — Programming + CS + Math
