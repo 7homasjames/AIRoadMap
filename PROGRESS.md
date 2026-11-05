@@ -4,6 +4,25 @@ Updated weekly, every Sunday. Newest entry on top.
 
 ---
 
+## Day 10 — Copy vs move semantics — 2026-11-05
+
+**Phase:** 1 — Programming + CS + Math
+
+### Topics touched
+- Deep vs shallow copy, the copy constructor vs copy assignment, the move constructor, lvalues vs rvalues, `std::move` as a cast, and the Rule of 0/3/5.
+
+### Engineering
+- `01-programming/cpp/day10.cpp`: a `Buffer` owning a `new[]` array with all five special members (the lesson's copy and move constructors, plus copy and move assignment). Allocation counts: construct 1, copy 2, move still 2, copy-assign 3, move-assign still 3. Each array is freed exactly once. It also shows overloads picked by value category, `std::move` changing nothing when no move overload takes the value, and a Rule of 0 `Student` built from `string` and `vector`.
+- Compiles cleanly with `-Wall -Wextra -pedantic`. The solution was written by Claude at my request.
+
+### Evidence
+- `01-programming/cpp/day10-lesson-copy-move.md`, `01-programming/cpp/day10.cpp`
+
+### Next starting point
+- Day 11: inheritance, virtual functions and vtables.
+
+---
+
 ## Day 9 — RAII & smart pointers — 2026-10-28
 
 **Phase:** 1 — Programming + CS + Math
