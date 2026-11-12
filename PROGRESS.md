@@ -4,6 +4,27 @@ Updated weekly, every Sunday. Newest entry on top.
 
 ---
 
+## Day 11 — Inheritance, virtual functions & vtables — 2026-11-12
+
+**Phase:** 1 — Programming + CS + Math
+
+### Topics touched
+- Inheritance, static vs dynamic dispatch, `virtual`/`override`, vptr and vtable, virtual destructors, pure virtual functions and abstract classes.
+
+### Engineering
+- `01-programming/cpp/day11.cpp`: a non-virtual call through a base pointer picks the base version, and a virtual call picks the object's. An abstract `Shape` hierarchy in one loop. Destructor order through base pointers: derived, then base. Measured `sizeof`: plain `int` 4 bytes, with a vptr 16, derived + `double` 24, and still 16 with three virtual functions (one vptr per object, one table per class).
+- `day11-dispatch.cpp` and its `.s` files: at `-O0` the virtual call is vptr load → slot load → `call rdx`. At `-O2` GCC speculatively devirtualizes: it compares the slot with the two known implementations and inlines them, and only does the real indirect jump for any other class. With a provable type, the call becomes `mov eax, 20`.
+- The lesson file is organised for first-principles revision: a 9-question ladder (problem → mechanism → cost), then the concept template sections.
+- Code and notes were written by Claude at my request. Section 10 is still mine to write.
+
+### Evidence
+- `01-programming/cpp/day11-lesson-inheritance-virtual.md`, `day11.cpp`, `day11-dispatch.cpp`, `day11-dispatch_O0.s`, `day11-dispatch_O2.s`
+
+### Next starting point
+- Day 12: templates and STL containers, compile-time polymorphism as the counterpart to today.
+
+---
+
 ## Day 10 — Copy vs move semantics — 2026-11-05
 
 **Phase:** 1 — Programming + CS + Math
