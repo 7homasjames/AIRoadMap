@@ -33,11 +33,11 @@ Updated weekly, every Sunday. Newest entry on top.
 - Deep vs shallow copy, the copy constructor vs copy assignment, the move constructor, lvalues vs rvalues, `std::move` as a cast, and the Rule of 0/3/5.
 
 ### Engineering
-- `01-programming/cpp/day10.cpp`: a `Buffer` owning a `new[]` array with all five special members (the lesson's copy and move constructors, plus copy and move assignment). Allocation counts: construct 1, copy 2, move still 2, copy-assign 3, move-assign still 3. Each array is freed exactly once. It also shows overloads picked by value category, `std::move` changing nothing when no move overload takes the value, and a Rule of 0 `Student` built from `string` and `vector`.
+- `01-programming/cpp/days-01-10/day10.cpp`: a `Buffer` owning a `new[]` array with all five special members (the lesson's copy and move constructors, plus copy and move assignment). Allocation counts: construct 1, copy 2, move still 2, copy-assign 3, move-assign still 3. Each array is freed exactly once. It also shows overloads picked by value category, `std::move` changing nothing when no move overload takes the value, and a Rule of 0 `Student` built from `string` and `vector`.
 - Compiles cleanly with `-Wall -Wextra -pedantic`. The solution was written by Claude at my request.
 
 ### Evidence
-- `01-programming/cpp/day10-lesson-copy-move.md`, `01-programming/cpp/day10.cpp`
+- `01-programming/cpp/days-01-10/day10-lesson-copy-move.md`, `01-programming/cpp/days-01-10/day10.cpp`
 
 ### Next starting point
 - Day 11: inheritance, virtual functions and vtables.
@@ -57,7 +57,7 @@ Updated weekly, every Sunday. Newest entry on top.
 - Both compile cleanly with `-Wall -Wextra -pedantic`. The solutions were written by Claude at my request.
 
 ### Evidence
-- `01-programming/cpp/day9-lesson-raii-smart-pointers.md`, `01-programming/cpp/day9.cpp`, `01-programming/cpp/stack_vs_heap.cpp`
+- `01-programming/cpp/days-01-10/day9-lesson-raii-smart-pointers.md`, `01-programming/cpp/days-01-10/day9.cpp`, `01-programming/cpp/days-01-10/stack_vs_heap.cpp`
 
 ### Next starting point
 - Day 10: copy vs move semantics. A class owning a heap buffer, with a deep-copy and a move constructor.
@@ -72,10 +72,10 @@ Updated weekly, every Sunday. Newest entry on top.
 - `struct` vs `class` (only the default access differs), encapsulation, invariants, constructors with initializer lists and validation, destructors and object lifetime.
 
 ### Engineering
-- `01-programming/cpp/day8.cpp`: a `BankAccount` with private balance, a validating constructor, `deposit`/`withdraw` that enforce the rules, a `const` getter and a tracing destructor. It shows destruction at the end of a block, reverse destruction order for two objects, a heap object destroyed at `delete`, and a failed construction where no destructor runs. Compiles cleanly with `-Wall -Wextra -pedantic`. The solution was written by Claude at my request.
+- `01-programming/cpp/days-01-10/day8.cpp`: a `BankAccount` with private balance, a validating constructor, `deposit`/`withdraw` that enforce the rules, a `const` getter and a tracing destructor. It shows destruction at the end of a block, reverse destruction order for two objects, a heap object destroyed at `delete`, and a failed construction where no destructor runs. Compiles cleanly with `-Wall -Wextra -pedantic`. The solution was written by Claude at my request.
 
 ### Evidence
-- `01-programming/cpp/day8-lesson-structs-classes.md`, `01-programming/cpp/day8.cpp`
+- `01-programming/cpp/days-01-10/day8-lesson-structs-classes.md`, `01-programming/cpp/days-01-10/day8.cpp`
 
 ### Next starting point
 - Day 9: RAII and smart pointers. Rewrite the `stack_vs_heap.cpp` leak with `unique_ptr`.
@@ -95,7 +95,7 @@ Updated weekly, every Sunday. Newest entry on top.
 - **Big-O:** linear search O(n), binary search O(log n) but needs sorted input, bubble sort O(n²).
 
 ### Concept notes completed (section 10)
-- `01-programming/cpp/01-compilation-and-memory.md`
+- `01-programming/cpp/days-01-10/01-compilation-and-memory.md`
 - `03-mathematics/linear-algebra/01-vectors-matrices.md`
 - `03-mathematics/linear-algebra/02-linear-transformations.md`
 
@@ -220,7 +220,7 @@ Starting with **C++** first — biggest genuine gap, and foundational for later 
 - Attempted AddressSanitizer (`-fsanitize=address`) to catch the leak programmatically — not available in this MinGW-w64 toolchain (missing `libasan`), noted as a known limitation in the file; the printed trace serves the same demonstration purpose without it.
 
 ### Evidence
-- `01-programming/cpp/01-compilation-and-memory.md`, `01-programming/cpp/stack_vs_heap.cpp`
+- `01-programming/cpp/days-01-10/01-compilation-and-memory.md`, `01-programming/cpp/days-01-10/stack_vs_heap.cpp`
 
 ### Next starting point
 - Fill in section 10 (own-words explanation) for this note plus the two outstanding linear algebra notes.
